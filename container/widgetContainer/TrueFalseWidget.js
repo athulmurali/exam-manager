@@ -6,7 +6,7 @@ import BlanksContainer from "../../components/BlanksContainer";
 import {Button} from "react-native-elements";
 import SubmitBar from "../SubmitBar";
 
-export default class FillInTheBlanks extends Component{
+export default class TrueFalseWidget extends Component{
     constructor(props){
         super(props)
     }
@@ -23,7 +23,7 @@ export default class FillInTheBlanks extends Component{
         return <View style={{padding :15}}>
             <QuestionHeader questionIndex={questionIndex} points={questionPoints}/>
             <QuestionParagraph questionText={questionText}/>
-            <BlanksContainer/>
+            <>
             <SubmitBar/>
         </View>
 

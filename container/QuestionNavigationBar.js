@@ -12,7 +12,7 @@ class QuestionNavigationBar extends React.Component{
     render(){
        return <View style={ this.props.style}>
 
-    <Button
+        <Button
         title="Previous"
         disabled={true}
         // loading

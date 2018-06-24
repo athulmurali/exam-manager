@@ -31,7 +31,7 @@ export default class EssayTextInput extends Component {
             <View>
                 <UselessTextInput
                     multiline = {true}
-                    numberOfLines = {4}
+                    numberOfLines = {5}
                     onChangeText={(text) => this.setState({text})}
                     value={this.state.text}
                 />
