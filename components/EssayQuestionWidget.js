@@ -4,6 +4,7 @@ import {Text} from "react-native-elements";
 import QuestionHeader from "../elements/QuestionHeader";
 import QuestionParagraph from "../elements/QuestionParagraph";
 import AnswerContainer from "./AnswerContainer";
+import QuestionNavigationBar from "../container/QuestionNavigationBar";
 
 class  EssayQuestionWidget extends React.Component{
     static  navigationOptions ={
@@ -31,6 +32,10 @@ class  EssayQuestionWidget extends React.Component{
                 <Text>Hola2</Text>
                 <Text>Hola3</Text>
             </AnswerContainer>
+            <QuestionNavigationBar
+                style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center'}}/>
+
+
 
 
 

@@ -8,6 +8,7 @@ import TextInput from "../elements/EssayTextInput";
 import Button from "react-native-elements/src/buttons/Button";
 import RadioButtonList from "./RadioButtonList";
 import QuestionHeader from "../elements/QuestionHeader";
+import QuestionNavigationBar from "../container/QuestionNavigationBar";
 
 const HOST_URL = "https://neu-course-manager.herokuapp.com"
 
@@ -63,45 +64,8 @@ class MCQ extends Component {
 
                 <RadioButtonList style={{padding: 15}}/>
 
-
-                <View style={{flexDirection: "row", justifyContent: 'space-between',
-                    alignItems: 'center'}}>
-
-                    <Button
-                        title="Previous"
-                        disabled={true}
-                        // loading
-                        // loadingProps={{ size: "large", color: "rgba(111, 202, 186, 1)" }}
-                        titleStyle={{ fontWeight: "700" }}
-                        buttonStyle={{
-                            backgroundColor: "#ff0000",
-                            width: 150,
-                            height: 45,
-                            borderColor: "transparent",
-                            borderWidth: 0,
-                            borderRadius: 10
-                        }}
-                        containerStyle={{ marginTop: 35 }}
-                    />
-
-                    <Button
-                        title="Next"
-                        disabled={true}
-
-
-                        titleStyle={{ fontWeight: "700" }}
-                        buttonStyle={{
-                            backgroundColor: "#4c4cff",
-                            width: 150,
-                            height: 45,
-                            borderColor: "transparent",
-                            borderWidth: 0,
-                            borderRadius: 10
-                        }}
-                        containerStyle={{ marginTop: 35 }}
-                    />
-                </View>
-
+                <QuestionNavigationBar
+                    style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center'}}/>
 
                 {/*Add Question button*/}
 
