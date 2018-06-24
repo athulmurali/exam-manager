@@ -2,7 +2,7 @@ import QuestionHeader from "../../elements/QuestionHeader";
 import {View} from "react-native";
 import React, {Component} from "react";
 import QuestionParagraph from "../../elements/QuestionParagraph";
-import BlanksContainer from "../../components/BlanksContainer";
+import BlanksContainer from "../BlanksQuestionContainer/BlanksParagraphView";
 import {Button} from "react-native-elements";
 import SubmitBar from "../SubmitBar";
 

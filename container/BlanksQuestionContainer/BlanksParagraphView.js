@@ -1,9 +1,9 @@
 import {TextInput, View} from "react-native";
 import {Text} from "react-native-elements";
 import React from "react";
-import {fillInTheBlankBox} from "../styles/FillInTheBlankStyle";
+import {fillInTheBlankBox} from "../../styles/FillInTheBlankStyle";
 
-export default  class BlanksContainer extends  React.Component{
+export default  class BlanksParagraphView extends  React.Component{
 
     textToTextBoxedText=(givenText)=>{
 

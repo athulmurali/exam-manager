@@ -21,6 +21,7 @@ import Assignment from "./components/Assignment";
 import MCQ from "./components/MCQ";
 import EssayQuestionWidget from "./container/widgetContainer/EssayQuestionWidget";
 import FillInTheBlanks from "./container/widgetContainer/FillInTheBlanks";
+import QuestionTrueFalseContainer from "./container/QuestionContainer/TrueFalseContainer/QuestionTrueFalseContainer";
 
 class Home extends React.Component{
   static navigationOptions = {
@@ -64,6 +65,11 @@ class Home extends React.Component{
           <Button title="Fill in the blanks"
                   onPress={() => this.props.navigation
                       .navigate('FillInTheBlanks') } />
+
+          <Button title="True False Question"
+                  onPress={() => this.props.navigation
+                      .navigate('QuestionTrueFalseContainer') } />
+
 
 
           <TrueFalseQuestionEditor/>
@@ -122,7 +128,8 @@ const App = createStackNavigator({
     Assignment,
     MCQ,
     EssayQuestionWidget,
-    FillInTheBlanks
+    FillInTheBlanks,
+    QuestionTrueFalseContainer
 });
 
 export default App;

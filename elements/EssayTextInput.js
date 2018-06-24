@@ -6,7 +6,7 @@ class UselessTextInput extends Component {
     render() {
         return (
             <TextInput
-                onChangeText={val => this.setState({ text: val})}
+                onChangeText={this.props.onChangeText}
                 value={this.props.value}
                 multiline
                 style={essayTextBox
@@ -19,23 +19,30 @@ class UselessTextInput extends Component {
 export default class EssayTextInput extends Component {
     constructor(props) {
         super(props);
+        this.handleChangeText = this.handleChangeText.bind(this)
         this.state = {
             text: 'Useless Multiline Placeholder',
         };
+    }
+
+    handleChangeText(text){
+
+        console.log("EssayTextInput :  handleChangeText =" + text);
+        console.log(this.props)
+        this.props.onChangeText(text)
+
     }
 
     // If you type something in the text box that is a color, the background will change to that
     // color.
     render() {
         return (
-            <View>
                 <UselessTextInput
                     multiline = {true}
-                    numberOfLines = {5}
-                    onChangeText={(text) => this.setState({text})}
+                    onChangeText= {this.handleChangeText}
                     value={this.state.text}
                 />
-            </View>
+
         );
     }
 }
