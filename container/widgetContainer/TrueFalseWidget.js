@@ -23,7 +23,6 @@ export default class TrueFalseWidget extends Component{
         return <View style={{padding :15}}>
             <QuestionHeader questionIndex={questionIndex} points={questionPoints}/>
             <QuestionParagraph questionText={questionText}/>
-            <>
             <SubmitBar/>
         </View>
 
