@@ -1,8 +1,7 @@
 import {TextInput, View} from "react-native";
 import {Text} from "react-native-elements";
 import React from "react";
-import {fillInTheBlankBox, fillInTheBlankBoxContainer} from "../styles/FillInTheBlankStyle";
-import {essayTextBox} from "../styles/essayQuestionWidget";
+import {fillInTheBlankBox} from "../styles/FillInTheBlankStyle";
 
 export default  class BlanksContainer extends  React.Component{
 
@@ -78,8 +77,6 @@ export default  class BlanksContainer extends  React.Component{
 
         console.log(listWithBlanks);
         return listWithBlanks
-
-
     }
 
     constructor(props)
@@ -102,7 +99,7 @@ export default  class BlanksContainer extends  React.Component{
 
     }
     render(){
-        const givenText = "abssddcdcdc kskd ksd skd s is  asasasasass [two=two] not really [one=1] abcd [1=1]".trim()
+        const givenText = this.props.blanksQuestionText.trim()
         return <View  style={{padding: 15}}>
                 <Text h4>Blanks Container </Text>
                 <View  style={{flexDirection: 'row', flexWrap: 'wrap'}}>

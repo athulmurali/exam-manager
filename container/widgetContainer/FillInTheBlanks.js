@@ -2,9 +2,8 @@ import QuestionHeader from "../../elements/QuestionHeader";
 import {View} from "react-native";
 import React, {Component} from "react";
 import QuestionParagraph from "../../elements/QuestionParagraph";
-import BlanksContainer from "../../components/BlanksContainer";
-import {Button} from "react-native-elements";
 import SubmitBar from "../SubmitBar";
+import BlanksQuestionContainer from "../BlanksQuestionContainer";
 
 export default class FillInTheBlanks extends Component{
     constructor(props){
@@ -23,7 +22,8 @@ export default class FillInTheBlanks extends Component{
         return <View style={{padding :15}}>
             <QuestionHeader questionIndex={questionIndex} points={questionPoints}/>
             <QuestionParagraph questionText={questionText}/>
-            <BlanksContainer/>
+            <BlanksQuestionContainer/>
+
             <SubmitBar/>
         </View>
 
