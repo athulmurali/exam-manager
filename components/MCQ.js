@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
-import {View, Alert} from 'react-native'
-import {
-    Text, ListItem, Header, Card, FormLabel, FormInput, FormValidationMessage, Icon,
-    Badge, Divider
-} from 'react-native-elements'
-import TextInput from "../elements/EssayTextInput";
+import {View} from 'react-native'
+import {Text} from 'react-native-elements'
 import Button from "react-native-elements/src/buttons/Button";
 import RadioButtonList from "./RadioButtonList";
 import QuestionHeader from "../elements/QuestionHeader";
 import QuestionNavigationBar from "../container/QuestionNavigationBar";
+
+import {questionEditBarStyle} from '../styles/essayQuestionWidget'
 
 const HOST_URL = "https://neu-course-manager.herokuapp.com"
 
@@ -69,8 +67,7 @@ class MCQ extends Component {
 
                 {/*Add Question button*/}
 
-                <View style={{flexDirection: "row", justifyContent: 'center',
-                    alignItems: 'center', paddingVertical: 10}}>
+                <View style = {questionEditBarStyle} >
 
                     <Button
 

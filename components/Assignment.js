@@ -1,12 +1,8 @@
 import React, {Component} from 'react'
-import {View, Alert} from 'react-native'
-import {
-    Text, ListItem, Header, Card, FormLabel, FormInput, FormValidationMessage, Icon,
-    Badge, Divider
-} from 'react-native-elements'
+import {Alert, View} from 'react-native'
+import {Badge, Divider, FormInput, FormLabel, FormValidationMessage, Icon, Text} from 'react-native-elements'
 import TextInput from "../elements/EssayTextInput";
 import Button from "react-native-elements/src/buttons/Button";
-import RadioButtonList from "./RadioButtonList";
 import * as Clipboard from "react-native/Libraries/Components/Clipboard/Clipboard";
 
 const HOST_URL = "https://neu-course-manager.herokuapp.com"

@@ -5,6 +5,8 @@ import QuestionHeader from "../elements/QuestionHeader";
 import QuestionParagraph from "../elements/QuestionParagraph";
 import AnswerContainer from "./AnswerContainer";
 import QuestionNavigationBar from "../container/QuestionNavigationBar";
+import QuestionEditBar from "../container/QuestionEditBar";
+import {questionEditBarStyle} from "../styles/essayQuestionWidget";
 
 class  EssayQuestionWidget extends React.Component{
     static  navigationOptions ={
@@ -34,10 +36,8 @@ class  EssayQuestionWidget extends React.Component{
             </AnswerContainer>
             <QuestionNavigationBar
                 style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center'}}/>
-
-
-
-
+            <QuestionEditBar
+                style ={questionEditBarStyle}/>
 
         </View>
     }
