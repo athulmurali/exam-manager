@@ -1,12 +1,12 @@
 import React from "react";
 import {View} from "react-native";
-import QuestionHeader from "../elements/QuestionHeader";
-import QuestionParagraph from "../elements/QuestionParagraph";
-import AnswerContainer from "./AnswerContainer";
-import QuestionNavigationBar from "../container/QuestionNavigationBar";
-import QuestionEditBar from "../container/QuestionEditBar";
-import {questionEditBarStyle} from "../styles/essayQuestionWidget";
-import TextInput from '../elements/EssayTextInput'
+import QuestionHeader from "../../elements/QuestionHeader";
+import QuestionParagraph from "../../elements/QuestionParagraph";
+import AnswerContainer from "../../components/AnswerContainer";
+import QuestionNavigationBar from "../QuestionNavigationBar";
+import QuestionEditBar from "../QuestionEditBar";
+import {questionEditBarStyle} from "../../styles/essayQuestionWidget";
+import TextInput from '../../elements/EssayTextInput'
 
 class  EssayQuestionWidget extends React.Component{
     static  navigationOptions ={

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, ScrollView } from 'react-native';
+import {ScrollView, StatusBar, Text, View} from 'react-native';
 import FixedHeader from './elements/FixedHeader'
 import TextHeadings from './elements/TextHeadings'
 import Icons from './elements/Icons'
@@ -8,7 +8,7 @@ import QuestionTypeButtonGroupChooser from './elements/QuestionTypeButtonGroupCh
 import QuestionTypePicker from './elements/QuestionTypePicker'
 import TrueFalseQuestionEditor from './elements/TrueFalseQuestionEditor'
 import MultipleChoiceQuestionEditor from './elements/MultipleChoiceQuestionEditor'
-import { createStackNavigator } from 'react-navigation'
+import {createStackNavigator} from 'react-navigation'
 import {Button} from 'react-native-elements'
 import ScreenX from './elements/ScreenX'
 import CourseList from './components/CourseList'
@@ -19,7 +19,8 @@ import QuestionList from './components/QuestionList'
 import TopicList from "./components/TopicList";
 import Assignment from "./components/Assignment";
 import MCQ from "./components/MCQ";
-import EssayQuestionWidget from "./components/EssayQuestionWidget";
+import EssayQuestionWidget from "./container/widgetContainer/EssayQuestionWidget";
+import FillInTheBlanks from "./container/widgetContainer/FillInTheBlanks";
 
 class Home extends React.Component{
   static navigationOptions = {
@@ -60,6 +61,9 @@ class Home extends React.Component{
           <Button title="Essay Question"
                   onPress={() => this.props.navigation
                       .navigate('EssayQuestionWidget') } />
+          <Button title="Fill in the blanks"
+                  onPress={() => this.props.navigation
+                      .navigate('FillInTheBlanks') } />
 
 
           <TrueFalseQuestionEditor/>
@@ -117,7 +121,8 @@ const App = createStackNavigator({
     ScreenX,
     Assignment,
     MCQ,
-    EssayQuestionWidget
+    EssayQuestionWidget,
+    FillInTheBlanks
 });
 
 export default App;

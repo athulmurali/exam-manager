@@ -1,9 +1,11 @@
 import QuestionHeader from "../../elements/QuestionHeader";
-import React from "react";
 import {View} from "react-native";
 import {Text} from "react-native-elements";
+import React, {Component} from "react";
+import QuestionParagraph from "../../elements/QuestionParagraph";
+import BlanksContainer from "../../components/BlanksContainer";
 
-class FillInFillInTheBlanks extends Component{
+export default class FillInTheBlanks extends Component{
     constructor(props){
         super(props)
     }
@@ -12,12 +14,18 @@ class FillInFillInTheBlanks extends Component{
         console.log("FillInFillInTheBlanks : Mounted");
     }
     render(){
+        const questionText = "Longest paragraph in the world is not really easy to type. " +
+            "That's why I keep the descriptions short"
+        const questionIndex = 1
+        const questionPoints = 50
+
         return <View>
-            <QuestionHeader/>
-            <Text>
-                Fill in the blanks text
-            </Text>
+            <QuestionHeader questionIndex={questionIndex} points={questionPoints}/>
+            <QuestionParagraph questionText={questionText}/>
+            <BlanksContainer/>
         </View>
 
     }
 }
+
+
