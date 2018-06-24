@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, View, TextInput } from 'react-native';
+import {essayTextBox} from "../styles/essayQuestionWidget";
 
 class UselessTextInput extends Component {
     render() {
@@ -8,7 +9,8 @@ class UselessTextInput extends Component {
                 onChangeText={val => this.setState({ text: val})}
                 value={this.props.value}
                 multiline
-                style={{minHeight: 60, height: 'auto'}}
+                style={essayTextBox
+                }
             />
         );
     }
@@ -26,8 +28,7 @@ export default class EssayTextInput extends Component {
     // color.
     render() {
         return (
-            <View
-            >
+            <View>
                 <UselessTextInput
                     multiline = {true}
                     numberOfLines = {4}

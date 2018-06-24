@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
 import {Text} from 'react-native-elements'
+
 class ScreenX extends Component {
 
     static navigationOptions = {

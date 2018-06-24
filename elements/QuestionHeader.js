@@ -21,7 +21,9 @@ class QuestionHeader extends  React.Component{
         return <View style={this.props.style || {flexDirection: "row", justifyContent: 'space-between',
                 alignItems: 'center',padding :15}}>
                 <FormLabel>Question : {this.props.questionIndex}</FormLabel>
-                <Badge
+                <Text> {this.props.questionName}</Text>
+
+            <Badge
                     value={this.props.points +"pts"}
                     textStyle={{ color: 'white',  fontSize: 20}}
                     containerStyle={{ backgroundColor: 'red'}} />
