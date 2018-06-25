@@ -1,9 +1,10 @@
 import React from "react";
 import {Text} from "react-native-elements";
 import {StyleSheet, View} from "react-native";
-import EditableHeader from "./QuestionHeader/EditableHeader";
 import EditModeToggleNavBar from "./EditModeToggleNavBar";
 import EditableQuestionHeaderContainer from "./QuestionHeader/EditableQuestionHeaderContainer";
+import QuestionDescriptionContainer from "./QuestionDescription/QuestionDescriptionContainer";
+import EditableContainerUpdateNavBar from "./EditableContainerUpdateNavBar";
 
 const styles =StyleSheet.create({
 editToggleBarStyle : {flexDirection:"row",justifyContent:"flex-end",alignItems:"center"}
@@ -16,7 +17,9 @@ export default  class EditableContainer extends React.Component{
     {
         super(props)
         this.state={
-            editMode: true
+            editMode: true,
+            questionTitle :  "Unnamed",
+            questionType  :  ""
         }
     }
 
@@ -38,10 +41,7 @@ export default  class EditableContainer extends React.Component{
 
     }
     render(){
-
-
         return <View>
-
             <Text h3>
                 Editable Container
             </Text>
@@ -50,6 +50,17 @@ export default  class EditableContainer extends React.Component{
                                   style={styles.editToggleBarStyle}
             />
             <EditableQuestionHeaderContainer editMode={this.state.editMode}/>
+            <QuestionDescriptionContainer editMode={this.state.editMode}
+                                         onChangeText=
+                                             {(text)=>{this.setState({
+                                                 description: text
+                                             })}}
+                                          descriptionText ={this.state.description}
+                                             />
+            {!!this.state.editMode  && <EditableContainerUpdateNavBar
+                onUpdateSelected={ ()=>console.log("EditableContainer :Update Pressed")}
+                onCancelSelected={ ()=>console.log("EditableContainer :CAncel Pressed")}
+            />}
         </View>
 
 

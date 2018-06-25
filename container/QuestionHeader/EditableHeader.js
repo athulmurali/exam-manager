@@ -63,21 +63,6 @@ const EditableHeader = () => {
             </FormValidationMessage>
 
 
-            <FormLabel>Description</FormLabel>
-            <FormInput
-                multiline
-                onChangeText={
-                text => {
-
-                    console.log(" new Description : " + text)
-                    // this.setState({description: text})
-
-                }
-            }/>
-            <FormValidationMessage>
-                Description is required
-            </FormValidationMessage>
-
 
         </View>
 
