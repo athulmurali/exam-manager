@@ -22,6 +22,7 @@ import EssayQuestionWidget from "./container/widgetContainer/EssayQuestionWidget
 import FillInTheBlanks from "./container/widgetContainer/FillInTheBlanks";
 import QuestionTrueFalseContainer from "./container/QuestionContainer/TrueFalseContainer/QuestionTrueFalseContainer";
 import AddQuestionWidget from "./container/widgetContainer/AddQuestionWidget";
+import EditableContainer from "./container/EditableContainer";
 
 class Home extends React.Component{
   static navigationOptions = {
@@ -45,7 +46,7 @@ class Home extends React.Component{
                 onPress={() => this.props.navigation
                   .navigate('CourseList') } />
 
-      <Button title="Go to Assignment "
+          <Button title="Go to Assignment "
               onPress={() => this.props.navigation
                   .navigate('Assignment') } />
 
@@ -69,7 +70,9 @@ class Home extends React.Component{
                   onPress={() => this.props.navigation
                       .navigate('AddQuestionWidget') } />
 
-
+          <Button title="EditableContainer"
+                  onPress={() => this.props.navigation
+                      .navigate('EditableContainer') } />
 
 
           <TrueFalseQuestionEditor/>
@@ -105,7 +108,8 @@ const App = createStackNavigator({
     EssayQuestionWidget,
     FillInTheBlanks,
     QuestionTrueFalseContainer,
-    AddQuestionWidget
+    AddQuestionWidget,
+    EditableContainer
 });
 
 //

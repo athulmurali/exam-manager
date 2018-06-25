@@ -1,6 +1,10 @@
 import React from "react";
 import {Text} from "react-native-elements";
-import {View} from "react-native";
+import { View} from "react-native";
+import EditableHeader from "./EditableHeader";
+
+
+
 
 export default  class EditableContainer extends React.Component{
 
@@ -17,13 +21,21 @@ export default  class EditableContainer extends React.Component{
 
     }
     render(){
+        const editMode= !!!this.props.editMode;
 
         return <View>
             <Text h2>
                 Editable Container
             </Text>
+
+            { !!editMode?
+                <EditableHeader/>:
+                <Text>In Preview Mode</Text>}
         </View>
 
 
     }
+
+
 }
+
