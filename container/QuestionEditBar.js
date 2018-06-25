@@ -29,7 +29,9 @@ class QuestionEditBar extends  React.Component{
                     borderRadius: 10
                 }}
                 containerStyle={{ marginTop: 35 }}
+                onPress={this.props.onSelectAddQuestion }
             />
+
 
         </View>
     }

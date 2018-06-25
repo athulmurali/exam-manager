@@ -1,26 +1,47 @@
 import React from 'react'
 import {Picker, Text, View} from 'react-native'
 
+
+
 class QuestionTypePicker extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      questionType: 0
+      questionType: "Not selected"
     }
+
+    this.handleSelectType = this.handleSelectType.bind(this)
   }
+
+
+  handleSelectType(itemValue,itemIndex){
+        console.log("QuestionTypePicker :handle type")
+        this.setState({questionType: itemValue, selectedIndex : itemIndex})
+        this.props.onSelectType(itemValue,itemValue)
+  }
+
+
   render() {
-    return (
-      <View>
+
+      console.log("QuestionTypePicker :rendered:");
+    return(
+
+      <View style ={this.props.style}>
         <Picker
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({questionType: itemValue})}
-          selectedValue={this.state.questionType}>
-          <Picker.Item value="MC" label="Multiple choice" />
-          <Picker.Item value="ES" label="Essay" />
-          <Picker.Item value="TF" label="True or false" />
-          <Picker.Item value="FB" label="Fill in the blanks" />
+            onValueChange={
+                this.handleSelectType}
+            selectedValue={this.state.questionType}>
+
+            {
+                this.props.optionsList.map((option,index)=>{
+                    console.log(index)
+                    return  <Picker.Item key ={index} value={option.value} label={option.label} />
+                })
+            }
+
+
         </Picker>
-        <Text>{this.state.questionType}</Text>
+        {/*<Text>{this.state.questionType}</Text>*/}
       </View>
     )
   }

@@ -9,6 +9,7 @@ import QuestionNavigationBar from "../../QuestionNavigationBar";
 import QuestionEditBar from "../../QuestionEditBar";
 import {questionNavigationBarStyle} from "../../../styles/QuestionCommonStyle";
 import {StyleSheet} from 'react-native'
+import AddQuestionWidget from "../../widgetContainer/AddQuestionWidget";
 
 const styles = StyleSheet.create({
     checkBoxContainer : {
@@ -95,7 +96,12 @@ export default class QuestionTrueFalseContainer extends React.Component{
             <QuestionNavigationBar
                 style={questionNavigationBarStyle}/>
             <QuestionEditBar
-                style ={questionEditBarStyle}/>
+                style ={questionEditBarStyle}
+                onSelectAddQuestion ={()=>{
+                    this.props
+                        .navigation
+                        .navigate('AddQuestionWidget')
+                }}/>
 
         </View>
     }

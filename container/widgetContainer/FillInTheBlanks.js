@@ -6,6 +6,9 @@ import SubmitBar from "../SubmitBar";
 import BlanksQuestionContainer from "../BlanksQuestionContainer/BlanksQuestionContainer";
 
 export default class FillInTheBlanks extends Component{
+    static navigationOptions ={
+        title : 'Fill in the blanks'
+    }
     constructor(props){
         super(props)
         this.state={
