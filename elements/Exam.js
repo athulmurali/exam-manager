@@ -1,28 +1,42 @@
 import React, {Component} from 'react'
-import {View} from 'react-native'
+import {View,Alert} from 'react-native'
 import {ListItem, Text} from 'react-native-elements'
+import AddQuestionWidget from "../container/widgetContainer/AddQuestionWidget";
 
-const questions = [
-  {	title: 'Question 1', subtitle: 'Multiple choice',
-    icon: 'list'},
-  {	title: 'Question 2', subtitle: 'Fill-in the blanks',
-    icon: 'code'},
-  {	title: 'Question 3', subtitle: 'True or false',
-    icon: 'check'},
-  {	title: 'Question 4', subtitle: 'Essay',
-    icon: 'subject'}]
 
 export default class Exam extends Component {
+    constructor(props){
+        super(props)
+
+    }
+
+    handleLongPress=(id)=>{
+        console.log("Exam : LongPress")
+        this.props.onLongPress(id)
+    }
+    handlePress=(question, id)=>{
+        console.log("Exam : Press")
+        this.props.onPress(question, id)
+
+
+
+
+
+
+    }
   render() {
     return(
       <View style={{padding: 15}}>
         <Text h2>Lists</Text>
-        {questions.map( (question, index) => (
+        {this.props.questionsList.map( (question, index) => (
           <ListItem
             key={index}
             leftIcon={{name: question.icon}}
             subtitle={question.subtitle}
-            title={question.title}/>
+            title={question.title}
+            onLongPress={()=>this.handleLongPress(question.id) }
+            onPress={()=>this.handlePress(question,question.id)}
+          />
         ))}
       </View>
     )

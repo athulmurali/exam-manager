@@ -1,6 +1,4 @@
-import {FormInput, FormLabel, FormValidationMessage} from "react-native-elements";
 import React from "react";
-import {View} from "react-native";
 import EditableContainer from "../common/EditableContainer";
 import EditableQuestionDescription from "./EditableQuestionDescription";
 import QuestionDescription from "./QuestionDescription";
