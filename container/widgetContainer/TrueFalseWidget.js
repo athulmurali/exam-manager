@@ -1,4 +1,4 @@
-import QuestionHeader from "../../elements/QuestionHeader";
+import QuestionHeader from "../QuestionHeader/QuestionHeader";
 import {View} from "react-native";
 import React, {Component} from "react";
 import QuestionParagraph from "../../elements/QuestionParagraph";

@@ -2,7 +2,7 @@ import React from "react";
 import {CheckBox} from "react-native-elements";
 import {View} from "react-native";
 import {questionEditBarStyle} from "../../../styles/essayQuestionWidget";
-import QuestionHeader from "../../../elements/QuestionHeader";
+import QuestionHeader from "../../QuestionHeader/QuestionHeader";
 import AnswerContainer from "../../../components/AnswerContainer";
 import QuestionParagraph from "../../../elements/QuestionParagraph";
 import QuestionNavigationBar from "../../QuestionNavigationBar";

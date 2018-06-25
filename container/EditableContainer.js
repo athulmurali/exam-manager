@@ -1,11 +1,13 @@
 import React from "react";
 import {Text} from "react-native-elements";
-import { View} from "react-native";
-import EditableHeader from "./EditableHeader";
+import {StyleSheet, View} from "react-native";
+import EditableHeader from "./QuestionHeader/EditableHeader";
 import EditModeToggleNavBar from "./EditModeToggleNavBar";
 
+const styles =StyleSheet.create({
+editToggleBarStyle : {flexDirection:"row",justifyContent:"flex-end",alignItems:"center"}
 
-
+})
 
 export default  class EditableContainer extends React.Component{
 
@@ -38,9 +40,11 @@ export default  class EditableContainer extends React.Component{
 
 
         return <View>
+
+
             <EditModeToggleNavBar initialSwitchState={this.state.editMode}
                                   onToggle={this.handleToggle}
-                                  style={{flexDirection:"row",justifyContent:"flex-end",alignItems:"center"}}
+                                  style={styles.editToggleBarStyle}
             />
             <Text h2>
                 Editable Container

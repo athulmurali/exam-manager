@@ -4,6 +4,12 @@ import {Text} from "react-native-elements";
 import FormLabel from "react-native-elements/src/form/FormLabel";
 import Badge from "react-native-elements/src/badge/badge";
 
+import {StyleSheet} from 'react-native'
+
+const styles= StyleSheet.create({
+    questionHeaderViewStyle:{flexDirection: "row", justifyContent: 'space-between',
+    alignItems: 'center',padding :15}
+})
 class QuestionHeader extends  React.Component{
 
     componentDidMount()
@@ -18,8 +24,7 @@ class QuestionHeader extends  React.Component{
     }
 
     render(){
-        return <View style={this.props.style || {flexDirection: "row", justifyContent: 'space-between',
-                alignItems: 'center',padding :15}}>
+        return <View style={this.props.style || styles.questionHeaderViewStyle}>
                 <FormLabel>Question : {this.props.questionIndex}</FormLabel>
                 <Text> {this.props.questionName}</Text>
 

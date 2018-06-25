@@ -3,7 +3,7 @@ import {View} from 'react-native'
 import {Text} from 'react-native-elements'
 import Button from "react-native-elements/src/buttons/Button";
 import RadioButtonList from "./RadioButtonList";
-import QuestionHeader from "../elements/QuestionHeader";
+import QuestionHeader from "../container/QuestionHeader/QuestionHeader";
 import QuestionNavigationBar from "../container/QuestionNavigationBar";
 
 import {questionEditBarStyle} from '../styles/essayQuestionWidget'

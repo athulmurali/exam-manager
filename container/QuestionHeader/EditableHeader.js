@@ -1,7 +1,8 @@
 import {Alert, ScrollView, StyleSheet, View} from "react-native";
-import {Button, CheckBox, FormInput, FormLabel, FormValidationMessage, Icon} from "react-native-elements";
+import {Button, CheckBox, FormInput, FormLabel, FormValidationMessage, Icon, Text} from "react-native-elements";
 import React from 'react'
 import Switch from 'react-native'
+import EditableContainer from "../common/EditableContainer";
 
 const styles = StyleSheet.create(
     {
@@ -74,20 +75,6 @@ const EditableHeader = () => {
             <FormValidationMessage>
                 Description is required
             </FormValidationMessage>
-
-            <CheckBox onPress={() => console.log("CheckBOx Pressed")}
-                      checked={false} title='The answer is true'/>
-
-            <Button backgroundColor="green"
-                    color="white"
-                    title="Save"/>
-            <Button backgroundColor="red"
-                    color="white"
-                    title="Cancel"/>
-
-            {/*<Text h3>Preview</Text>*/}
-            {/*<Text h2>{this.state.title}</Text>*/}
-            {/*<Text>{this.state.description}</Text>*/}
 
 
         </View>

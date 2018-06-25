@@ -1,6 +1,6 @@
 import React from "react";
 import {View} from "react-native";
-import QuestionHeader from "../../elements/QuestionHeader";
+import QuestionHeader from "../QuestionHeader/QuestionHeader";
 import QuestionParagraph from "../../elements/QuestionParagraph";
 import AnswerContainer from "../../components/AnswerContainer";
 import QuestionNavigationBar from "../QuestionNavigationBar";
