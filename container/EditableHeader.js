@@ -1,7 +1,7 @@
 import {Alert, ScrollView, StyleSheet, View} from "react-native";
 import {Button, CheckBox, FormInput, FormLabel, FormValidationMessage, Icon} from "react-native-elements";
 import React from 'react'
-
+import Switch from 'react-native'
 
 const styles = StyleSheet.create(
     {
@@ -23,10 +23,9 @@ export const MAX_POINTS_LENGTH = 5
 const EditableHeader = () => {
 
 
+
     return <ScrollView>
         <View style={styles.mainContainerStyle}>
-
-
             <FormLabel>Title</FormLabel>
             <FormInput onChangeText={
                 // text => this.setState({title: text})
