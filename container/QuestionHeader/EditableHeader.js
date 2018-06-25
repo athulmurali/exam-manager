@@ -64,7 +64,9 @@ const EditableHeader = () => {
 
 
             <FormLabel>Description</FormLabel>
-            <FormInput onChangeText={
+            <FormInput
+                multiline
+                onChangeText={
                 text => {
 
                     console.log(" new Description : " + text)
