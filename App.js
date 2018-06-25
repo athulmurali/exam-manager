@@ -25,8 +25,11 @@ import QuestionTrueFalseContainer from "./container/QuestionContainer/TrueFalseC
 
 class Home extends React.Component{
   static navigationOptions = {
-    title: 'Home'
+    title: 'Home',
   }
+
+
+
   constructor(props) {
     super(props)
   }
@@ -131,5 +134,14 @@ const App = createStackNavigator({
     FillInTheBlanks,
     QuestionTrueFalseContainer
 });
+
+//
+// let styles = StyleSheet.create({
+//     back: {
+//         fontFamily: "Lato-Regular",
+//     }
+//
+// });
+
 
 export default App;
