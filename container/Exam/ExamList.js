@@ -2,13 +2,9 @@ import Exam from "../../elements/Exam";
 import React from "react";
 import {Alert, View} from "react-native";
 import {Text} from "react-native-elements";
-import FillInTheBlanks from "../widgetContainer/FillInTheBlanks";
 import EssayQuestionWidget from "../widgetContainer/EssayQuestionWidget";
-import MultipleChoiceQuestionEditor from "../../elements/MultipleChoiceQuestionEditor";
-import TrueFalseQuestionEditor from "../../elements/TrueFalseQuestionEditor";
-import TrueFalseWidget from "../widgetContainer/TrueFalseWidget";
 
-const FILL = "FillInTheBlanks"
+const FILL = "FillInTheBlanksQuestionWidget"
 const ESSAY= "EssayQuestionWidget"
 const MCQ= "MCQ"
 const TF=  "QuestionTrueFalseContainer"

@@ -7,14 +7,14 @@ const EditableQuestionDescription=(props)=>{
     <FormLabel>Description</FormLabel>
     <FormInput
 
-    text ={props.descriptionText}
+    value ={props.descriptionText}
 
     multiline
     onChangeText={
         text => {
         console.log(" new Description : " + text)
             props.onChangeText(text)
-        // this.setState({description: text})
+        // this.setState({description: text})i
     }
 }/>
     <FormValidationMessage>

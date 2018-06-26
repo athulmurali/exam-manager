@@ -1,6 +1,6 @@
 import React from "react";
 import {CheckBox} from "react-native-elements";
-import {View} from "react-native";
+import {ScrollView, View} from "react-native";
 import {questionEditBarStyle} from "../../../styles/essayQuestionWidget";
 import QuestionHeader from "../../QuestionHeader/QuestionHeader";
 import AnswerContainer from "../../../components/AnswerContainer";
@@ -10,6 +10,7 @@ import QuestionEditBar from "../../QuestionEditBar";
 import {questionNavigationBarStyle} from "../../../styles/QuestionCommonStyle";
 import {StyleSheet} from 'react-native'
 import AddQuestionWidget from "../../widgetContainer/AddQuestionWidget";
+import EditableQuestionContainer from "../../EditableQuestionContainer";
 
 const styles = StyleSheet.create({
     checkBoxContainer : {
@@ -27,7 +28,7 @@ export default class QuestionTrueFalseContainer extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            trueSelected : true
+            answer : true
         }
 
     }
@@ -52,12 +53,13 @@ export default class QuestionTrueFalseContainer extends React.Component{
 
         console.log("QuestionTrueFalseContainer : rendered")
 
-        return <View
+        return <ScrollView
             style ={{padding : 14}}>
-            <QuestionHeader questionIndex ={questionIndex}   questionName={"sasas"} points ={questionPoints}/>
-            <QuestionParagraph questionText = {questionText}  style={{padding :20}}/>
-            <AnswerContainer style={{padding :20}}>
+            <EditableQuestionContainer/>
+            <CheckBox onPress={() => this.setState({answer: !this.state.answer})}
+                      checked={this.state.answer} title='The answer is true'/>
 
+            <AnswerContainer style={{padding :20}}>
 
                 <CheckBox
                     left
@@ -68,10 +70,8 @@ export default class QuestionTrueFalseContainer extends React.Component{
                     containerStyle = {styles.checkBoxContainer}
 
                     onPress={()=>this.setState({
-                            trueSelected : true
-                        })}
-
-                />
+                        trueSelected : true
+                    })}/>
 
                 <CheckBox
                     left
@@ -81,16 +81,13 @@ export default class QuestionTrueFalseContainer extends React.Component{
                     checked={!this.state.trueSelected}
                     containerStyle = {styles.checkBoxContainer}
                     onPress={()=>this.setState({
-                       trueSelected : false
+                        trueSelected : false
                     })
 
                     }
 
 
                 />
-
-
-
 
             </AnswerContainer>
             <QuestionNavigationBar
@@ -103,6 +100,6 @@ export default class QuestionTrueFalseContainer extends React.Component{
                         .navigate('AddQuestionWidget')
                 }}/>
 
-        </View>
+        </ScrollView>
     }
 }

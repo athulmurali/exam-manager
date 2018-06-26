@@ -58,7 +58,7 @@ export default  class  BlanksQuestionContainer extends React.Component{
 
 
         return <View>
-            <Text h4>Blanks Question Container</Text>
+            <Text >Blanks Question Container</Text>
             {
                 !!this.state.editMode &&
                 <EditableContainerUpdateNavBar

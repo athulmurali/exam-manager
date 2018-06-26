@@ -1,15 +1,10 @@
 import {Alert, ScrollView, StyleSheet, View} from "react-native";
-import {Button, CheckBox, FormInput, FormLabel, FormValidationMessage, Icon, Text} from "react-native-elements";
+import {FormInput, FormLabel, FormValidationMessage, Icon} from "react-native-elements";
 import React from 'react'
-import Switch from 'react-native'
-import EditableContainer from "../common/EditableContainer";
 
 const styles = StyleSheet.create(
     {
-        mainContainerStyle: {
-            flexDirection: 'column',
-            flex: 1
-        },floatingMenuButtonStyle: {
+      floatingMenuButtonStyle: {
             alignSelf: 'flex-end',
             position: 'absolute',
             top: 0,
@@ -21,16 +16,20 @@ const styles = StyleSheet.create(
 export const MAX_TITLE_LENGTH = 15
 export const MAX_POINTS_LENGTH = 5
 
-const EditableHeader = () => {
 
+const EditableHeader = (props) => {
+    console.log("props in Editable header " )
+    console.log(props)
 
-
-    return <ScrollView>
-        <View style={styles.mainContainerStyle}>
+    return<View style={props.containerStyle}>
             <FormLabel>Title</FormLabel>
-            <FormInput onChangeText={
-                // text => this.setState({title: text})
-                text => console.log({title: text})}
+            <FormInput
+                value={props.titleText.toString()}
+                onChangeText={
+                text => {
+                    props.onChangeText(text)
+                }}
+
                        maxLength={MAX_TITLE_LENGTH}
             />
             <Icon containerStyle={styles.floatingMenuButtonStyle}
@@ -51,11 +50,12 @@ const EditableHeader = () => {
 
 
             <FormLabel>Points</FormLabel>
-            <FormInput onChangeText={
-                // text => this.setState({title: text})
-                text => console.log({title: text})}
-                       maxLength={MAX_POINTS_LENGTH}
-                       keyboardType="numeric"
+            <FormInput
+                value={props.points}
+
+                keyboardType="numeric"
+               onChangeText={ props.onChangePointsText }
+               maxLength={MAX_POINTS_LENGTH}
             />
 
             <FormValidationMessage>
@@ -65,8 +65,6 @@ const EditableHeader = () => {
 
 
         </View>
-
-    </ScrollView>
 
 }
 

@@ -5,6 +5,7 @@ import React from "react";
 import {questionEditBarStyle} from "../styles/essayQuestionWidget";
 
 export default  class EditableContainerUpdateNavBar extends Component{
+
     constructor(props){
         super(props)
         this.handleOnPressCancel = this.handleOnPressCancel.bind(this)
@@ -22,12 +23,12 @@ export default  class EditableContainerUpdateNavBar extends Component{
         this.props.onCancelSelected()
 
 
+
     }
 
-    handleOnPressUpdate(){
+    handleOnPressUpdate=()=>{
         console.log("EditableContainerUpdateNavBar : Update Pressed")
         this.props.onUpdateSelected()
-
 
 
     }

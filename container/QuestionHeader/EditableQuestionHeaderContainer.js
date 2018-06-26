@@ -7,10 +7,17 @@ import QuestionHeader from "./QuestionHeader";
 // Method discovered by Athul Muralidharan.
 
 const EditableQuestionHeaderContainer=(props)=>{
-    return <EditableContainer editMode={props.editMode}>
-        <EditableHeader editable>EditableText</EditableHeader>
-        <QuestionHeader/>
-
+    console.log("EditableQuestionContainer : rendered")
+    console.log(props)
+    return <EditableContainer editMode={props.editMode}  >
+                <EditableHeader editable
+                        points={props.points}
+                        titleText={props.titleText}
+                        onChangeText={props.onChangeTitleText}
+                        onChangePointsText ={props.onChangePointsText}>
+            EditableText
+        </EditableHeader>
+        <QuestionHeader titleText={props.titleText} points ={props.points}/>
     </EditableContainer>
 }
 

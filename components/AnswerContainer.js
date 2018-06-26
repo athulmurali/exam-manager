@@ -14,9 +14,8 @@ class AnswerContainer extends React.Component{
     }
     render(){
         return <View style ={this.props.style}>
-            <Text>Answer Container text </Text>
-            {this.props.children}
-        </View>
+                {this.props.children}
+            </View>
     }
 
 }

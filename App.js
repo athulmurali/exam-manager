@@ -3,9 +3,7 @@ import {ScrollView, StatusBar, View} from 'react-native';
 import FixedHeader from './elements/FixedHeader'
 import TextHeadings from './elements/TextHeadings'
 import Icons from './elements/Icons'
-import Exam from './elements/Exam'
 import QuestionTypeButtonGroupChooser from './elements/QuestionTypeButtonGroupChooser'
-import QuestionTypePicker from './elements/QuestionTypePicker'
 import TrueFalseQuestionEditor from './elements/TrueFalseQuestionEditor'
 import MultipleChoiceQuestionEditor from './elements/MultipleChoiceQuestionEditor'
 import {createStackNavigator} from 'react-navigation'
@@ -22,12 +20,14 @@ import EssayQuestionWidget from "./container/widgetContainer/EssayQuestionWidget
 import FillInTheBlanks from "./container/widgetContainer/FillInTheBlanks";
 import QuestionTrueFalseContainer from "./container/QuestionContainer/TrueFalseContainer/QuestionTrueFalseContainer";
 import AddQuestionWidget from "./container/widgetContainer/AddQuestionWidget";
-import EditableContainer from "./container/EditableContainer";
 import ExamList from "./container/Exam/ExamList";
+import EditableQuestionContainer from './container/EditableQuestionContainer'
+import TrueOrFalseQuestionWidget from "./container/widgetContainer/TrueOrFalseQuestionWidget";
+import FillInTheBlanksQuestionWidget from "./container/widgetContainer/FillInTheBlanksQuestionWidget";
 
 class Home extends React.Component{
   static navigationOptions = {
-    title: 'Home',
+    title: 'Fill in the Blanks',
   }
 
 
@@ -62,19 +62,25 @@ class Home extends React.Component{
                   onPress={() => this.props.navigation
                       .navigate('FillInTheBlanks') } />
 
-          <Button title="True False Question"
+          <Button title="TrueOrFalseQuestionWidget"
                   onPress={() => this.props.navigation
-                      .navigate('QuestionTrueFalseContainer') } />
+                      .navigate('TrueOrFalseQuestionWidget') } />
+
+          <Button title="FillInTheBlanksQuestionWidget"
+                  onPress={() => this.props.navigation
+                      .navigate('FillInTheBlanksQuestionWidget') } />
+
+
+
 
 
           <Button title="Add Question"
                   onPress={() => this.props.navigation
                       .navigate('AddQuestionWidget') } />
 
-          <Button title="EditableContainer"
+          <Button title="EditableQuestionContainer"
                   onPress={() => this.props.navigation
-                      .navigate('EditableContainer') } />
-
+                      .navigate('EditableQuestionContainer') } />
 
           <Button title="Exam List"
                   onPress={() => this.props.navigation
@@ -114,17 +120,12 @@ const App = createStackNavigator({
     FillInTheBlanks,
     QuestionTrueFalseContainer,
     AddQuestionWidget,
-    EditableContainer,
-    ExamList
+    EditableQuestionContainer,
+    ExamList,
+    TrueOrFalseQuestionWidget,
+    FillInTheBlanksQuestionWidget
+
+
 });
-
-//
-// let styles = StyleSheet.create({
-//     back: {
-//         fontFamily: "Lato-Regular",
-//     }
-//
-// });
-
 
 export default App;

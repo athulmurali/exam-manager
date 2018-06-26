@@ -1,6 +1,10 @@
 import React from "react";
 import {Text} from "react-native-elements";
-import {Switch, View} from "react-native";
+import {StyleSheet, Switch, View} from "react-native";
+
+const styles =StyleSheet.create({
+    editToggleBarStyle : {flexDirection:"row",justifyContent:"flex-end",alignItems:"center"}}
+    )
 
 export default class EditModeToggleNavBar extends React.Component{
     constructor(props)
@@ -13,7 +17,7 @@ export default class EditModeToggleNavBar extends React.Component{
 
     }
     render(){
-        return <View style={this.props.style} >
+        return <View style={styles.editToggleBarStyle} >
             <Text>
                 Preview
             </Text>
