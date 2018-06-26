@@ -62,10 +62,7 @@ export default  class EditableQuestionContainer extends React.Component{
 
 
     render(){
-        return <View style={{padding: 10}}>
-            {/*<Text style={{alignSelf:"center",fontSize:20}}>*/}
-                {/*Editable Container*/}
-            {/*</Text>*/}
+        return <View>
 
             <EditableQuestionHeaderContainer
                 editMode            =           {this.props.editMode}

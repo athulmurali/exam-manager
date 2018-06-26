@@ -23,6 +23,7 @@ import AddQuestionWidget from "./container/widgetContainer/AddQuestionWidget";
 import ExamList from "./container/Exam/ExamList";
 import TrueOrFalseQuestionWidget from "./container/widgetContainer/TrueOrFalseQuestionWidget";
 import FillInTheBlanksQuestionWidget from "./container/widgetContainer/FillInTheBlanksQuestionWidget";
+import MultipleChoiceQuestionWidget from "./container/widgetContainer/MultipleChoiceQuestionWidget";
 
 class Home extends React.Component{
   static navigationOptions = {
@@ -72,6 +73,14 @@ class Home extends React.Component{
                   onPress={() => this.props.navigation
                       .navigate('FillInTheBlanksQuestionWidget') } />
 
+          <Button title="MultipleChoiceQuestionWidget"
+                  onPress={() => this.props.navigation
+                      .navigate('MultipleChoiceQuestionWidget') } />
+
+
+
+
+
 
           <Button title="AddQuestionWidget"
                   onPress={() => this.props.navigation
@@ -118,7 +127,8 @@ const App = createStackNavigator({
     AddQuestionWidget,
     ExamList,
     TrueOrFalseQuestionWidget,
-    FillInTheBlanksQuestionWidget
+    FillInTheBlanksQuestionWidget,
+    MultipleChoiceQuestionWidget
 
 
 });

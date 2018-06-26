@@ -26,7 +26,6 @@ class RadioButtonList extends  React.Component{
                     initial={0}
                     onPress={(value) => {this.setState({value:value})}}
                 />
-                <Text>{this.state.value}</Text>
             </View>
         );
     }
