@@ -21,7 +21,6 @@ import FillInTheBlanks from "./container/FillInTheBlanks";
 import QuestionTrueFalseContainer from "./container/QuestionContainer/TrueFalseContainer/QuestionTrueFalseContainer";
 import AddQuestionWidget from "./container/widgetContainer/AddQuestionWidget";
 import ExamList from "./container/Exam/ExamList";
-import EditableQuestionContainer from './container/EditableQuestionContainer'
 import TrueOrFalseQuestionWidget from "./container/widgetContainer/TrueOrFalseQuestionWidget";
 import FillInTheBlanksQuestionWidget from "./container/widgetContainer/FillInTheBlanksQuestionWidget";
 
@@ -55,12 +54,15 @@ class Home extends React.Component{
           <Button title="MCQ "
                   onPress={() => this.props.navigation
                       .navigate('MCQ') } />
-          <Button title="Essay Question"
+
+          {/*<Button title="Fill in the blanks"*/}
+                  {/*onPress={() => this.props.navigation*/}
+                      {/*.navigate('FillInTheBlanks') } />*/}
+
+
+          <Button title="EssayQuestionWidget"
                   onPress={() => this.props.navigation
                       .navigate('EssayQuestionWidget') } />
-          <Button title="Fill in the blanks"
-                  onPress={() => this.props.navigation
-                      .navigate('FillInTheBlanks') } />
 
           <Button title="TrueOrFalseQuestionWidget"
                   onPress={() => this.props.navigation
@@ -71,16 +73,10 @@ class Home extends React.Component{
                       .navigate('FillInTheBlanksQuestionWidget') } />
 
 
-
-
-
-          <Button title="Add Question"
+          <Button title="AddQuestionWidget"
                   onPress={() => this.props.navigation
                       .navigate('AddQuestionWidget') } />
 
-          <Button title="EditableQuestionContainer"
-                  onPress={() => this.props.navigation
-                      .navigate('EditableQuestionContainer') } />
 
           <Button title="Exam List"
                   onPress={() => this.props.navigation
@@ -120,7 +116,6 @@ const App = createStackNavigator({
     FillInTheBlanks,
     QuestionTrueFalseContainer,
     AddQuestionWidget,
-    EditableQuestionContainer,
     ExamList,
     TrueOrFalseQuestionWidget,
     FillInTheBlanksQuestionWidget
