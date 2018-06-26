@@ -1,9 +1,9 @@
-import QuestionHeader from "../QuestionHeader/QuestionHeader";
+import QuestionHeader from "./QuestionHeader/QuestionHeader";
 import {View} from "react-native";
 import React, {Component} from "react";
-import QuestionParagraph from "../../elements/QuestionParagraph";
-import SubmitBar from "../SubmitBar";
-import BlanksQuestionContainer from "../BlanksQuestionContainer/BlanksQuestionContainer";
+import QuestionParagraph from "../elements/QuestionParagraph";
+import SubmitBar from "./SubmitBar";
+import BlanksQuestionContainer from "./BlanksQuestionContainer/BlanksQuestionContainer";
 
 export default class FillInTheBlanks extends Component{
     static navigationOptions ={

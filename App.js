@@ -17,7 +17,7 @@ import TopicList from "./components/TopicList";
 import Assignment from "./components/Assignment";
 import MCQ from "./components/MCQ";
 import EssayQuestionWidget from "./container/widgetContainer/EssayQuestionWidget";
-import FillInTheBlanks from "./container/widgetContainer/FillInTheBlanks";
+import FillInTheBlanks from "./container/FillInTheBlanks";
 import QuestionTrueFalseContainer from "./container/QuestionContainer/TrueFalseContainer/QuestionTrueFalseContainer";
 import AddQuestionWidget from "./container/widgetContainer/AddQuestionWidget";
 import ExamList from "./container/Exam/ExamList";

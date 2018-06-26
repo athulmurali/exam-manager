@@ -1,5 +1,4 @@
 import React from "react";
-import {CheckBox} from "react-native-elements";
 import {ScrollView, StyleSheet} from "react-native";
 import {questionEditBarStyle} from "../../styles/essayQuestionWidget";
 import AnswerContainer from "../../components/AnswerContainer";
