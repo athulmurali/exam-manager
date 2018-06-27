@@ -24,29 +24,7 @@ export default class EditableList extends React.Component{
     }
 
     handleLongPress=(index)=>{
-        console.log("Choice List Long Press...."+index)
-        Alert.alert(
-            'Confirm Delete',
-            'Delete this exam?',
-            [
-                {text: 'Cancel'
-                    , style: 'cancel'},
-                {text: 'OK', onPress:() => this.deleteByIndex(index)},
-            ],
-            { cancelable: false }
-        )
-    }
-
-    deleteByIndex=(deleteIndex)=>{
-        let newList = this.state.elementsList.filter((element, index)=>{
-            console.log( index + " :Index to be deleted :" + deleteIndex == index)
-            return deleteIndex != index
-        })
-        console.log("List after deletion: ")
-        console.log(newList)
-        this.setState({
-            elementsList : newList
-        })
+       this.props.onDelete(index)
     }
 
 
@@ -65,7 +43,7 @@ export default class EditableList extends React.Component{
 
         return <View>
         {
-              this.state.elementsList.map(
+              this.props.elementsList.map(
                 (element,index)=>{
                     return <CheckBox
                     title={  this.convertNumericIndexToAlphabetical(index) + ". " + element.title}

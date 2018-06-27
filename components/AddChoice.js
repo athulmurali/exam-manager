@@ -54,12 +54,16 @@ export default class AddChoice extends React.Component{
 
     }
 
-    toggleTextMode=()=>{
-        this.setState({
-                textBoxMode: !this.state.textBoxMode
-            }
-        )
+    toggleTextMode=()=> {
+
+            this.setState({
+                    textBoxMode: !this.state.textBoxMode
+                },this.props.onPressAdd
+            )
+
+
     }
+
 
     render(){
         return<View>

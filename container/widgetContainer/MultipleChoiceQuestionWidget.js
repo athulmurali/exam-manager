@@ -1,6 +1,6 @@
 import React from "react";
 import {FormLabel, Icon} from "react-native-elements";
-import {ScrollView, StyleSheet, TextInput, View} from "react-native";
+import {Alert, ScrollView, StyleSheet, TextInput, View} from "react-native";
 import {questionEditBarStyle} from "../../styles/essayQuestionWidget";
 import QuestionNavigationBar from "../QuestionNavigationBar";
 import QuestionEditBar from "../QuestionEditBar";
@@ -43,23 +43,7 @@ const styles = StyleSheet.create({
 
 });
 
-const elementsList=[
-    {
-        id : 1,
-        title :"title1"
-    },
 
-    {
-        id : 2,
-        title :"title2"
-    },
-
-    {
-        id : 3,
-        title :"title3"
-    }
-
-]
 
 
 export default class MultipleChoiceQuestionWidget extends React.Component{
@@ -75,7 +59,27 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
 
 
             correctAnswerIndex : 1,
-            answersList:[]
+            answersList:[],
+            tempNewChoiceText : "",
+
+
+            elementsList: [
+                {
+                    id : 1,
+                    title :"title1"
+                },
+
+                {
+                    id : 2,
+                    title :"title2"
+                },
+
+                {
+                    id : 3,
+                    title :"title3"
+                }
+
+            ]
 
         }
 
@@ -98,7 +102,39 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
         this.setCorrectAnswer(answerIndex)
     }
 
+    handleNewChoiceText=(text)=>{
 
+        this.setState({
+            tempNewChoiceText : text
+        })
+
+    }
+
+
+    handleOnPressAdd=()=>{
+
+        console.log("MCQ : handleOnPressAdd");
+        if(this.state.tempNewChoiceText !="")  this.setAddNewChoice()
+    }
+    handleDelete=(index)=>{
+        console.log("Choice List Long Press...."+index)
+        Alert.alert(
+            'Confirm Delete',
+            'Delete this exam?',
+            [
+                {text: 'Cancel'
+                    , style: 'cancel'},
+                {text: 'OK', onPress:() => this.deleteByIndex(index)},
+            ],
+            { cancelable: false }
+        )
+    }
+
+    setAddNewChoice=()=>{
+        this.setState({
+            elementsList : this.state.elementsList.concat({title : this.state.tempNewChoiceText })
+        },()=>{console.log(this.state.elementsList)})
+    }
     setCorrectAnswer=(answerIndex)=>{
         this.setState(
             {
@@ -107,6 +143,21 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
             }
         )
     }
+
+
+    deleteByIndex=(deleteIndex)=>{
+        let newList = this.state.elementsList.filter((element, index)=>{
+            console.log( index + " :Index to be deleted :" + deleteIndex == index)
+            return deleteIndex != index
+        })
+        console.log("List after deletion: ")
+        console.log(newList)
+        this.setState({
+            elementsList : newList
+        })
+    }
+
+
 
     render(){
 
@@ -133,18 +184,18 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
 
             {
                 !!this.state.editMode &&
-
-
                 <View>
-                    <AddChoice onChangeText={(text)=>{console.log(text)}}/>
+                    <AddChoice onChangeText={this.handleNewChoiceText}
+                               onPressAdd={this.handleOnPressAdd} />
 
 
                     <FormLabel>Select the correct answer</FormLabel>
 
                     <EditableList
-                    elementsList ={elementsList}
+                    elementsList ={this.state.elementsList}
 
                     onSelectIndex={this.handleCorrectAnswerSelection}
+                    onDelete={this.handleDelete}
                 />
                     <FormLabel>Long Press to delete a option</FormLabel>
 
