@@ -1,8 +1,7 @@
 import React from "react";
-import {CheckBox, FormLabel, Text} from "react-native-elements";
-import {ScrollView, StyleSheet} from "react-native";
+import {FormLabel, Icon} from "react-native-elements";
+import {ScrollView, StyleSheet, TextInput, View} from "react-native";
 import {questionEditBarStyle} from "../../styles/essayQuestionWidget";
-import AnswerContainer from "../../components/AnswerContainer";
 import QuestionNavigationBar from "../QuestionNavigationBar";
 import QuestionEditBar from "../QuestionEditBar";
 import {questionNavigationBarStyle} from "../../styles/QuestionCommonStyle";
@@ -10,6 +9,7 @@ import AddQuestionWidget from "../widgetContainer/AddQuestionWidget";
 import EditableQuestionContainer from "../EditableQuestionContainer";
 import EditModeToggleNavBar from "../EditModeToggleNavBar";
 import EditableList from "../../components/EditableList";
+import AddChoice from "../../components/AddChoice";
 
 const styles = StyleSheet.create({
     checkBoxContainer : {
@@ -17,10 +17,49 @@ const styles = StyleSheet.create({
     },
     trueFalseSelectionContainerStyle :{
         padding :20
-    }
+    },
+
+    searchSection: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        margin : 15
+
+    },
+    searchIcon: {
+        padding: 10,
+    },
+    input: {
+        flex: 1,
+        paddingTop: 10,
+        paddingRight: 10,
+        paddingBottom: 10,
+        paddingLeft: 0,
+        backgroundColor: '#fff',
+        color: '#424242',
+    },
 
 });
 
+const elementsList=[
+    {
+        id : 1,
+        title :"title1"
+    },
+
+    {
+        id : 2,
+        title :"title2"
+    },
+
+    {
+        id : 3,
+        title :"title3"
+    }
+
+]
 
 
 export default class MultipleChoiceQuestionWidget extends React.Component{
@@ -32,7 +71,12 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
         super(props)
         this.state={
             answer : true,
-            editMode :true
+            editMode :true,
+
+
+            correctAnswerIndex : 1,
+            answersList:[]
+
         }
 
     }
@@ -50,7 +94,22 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
         })
     }
 
+    handleCorrectAnswerSelection=(answerIndex)=>{
+        this.setCorrectAnswer(answerIndex)
+    }
+
+
+    setCorrectAnswer=(answerIndex)=>{
+        this.setState(
+            {
+                correctAnswerIndex :  answerIndex
+
+            }
+        )
+    }
+
     render(){
+
         const questionText = "Longest paragraph in the world is not really easy to type. " +
             "That's why I keep the descriptions short"
         const questionIndex = 1
@@ -60,6 +119,7 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
 
         return <ScrollView style ={{padding : 11}}>
 
+            {/*<ModalBox modalVisible={true}/>*/}
 
             <EditModeToggleNavBar
                 initialSwitchState={this.state.editMode}
@@ -70,11 +130,29 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
                 editMode = {this.state.editMode}/>
 
 
-            <FormLabel>Select the correct answer</FormLabel>
 
-            <EditableList/>
+            {
+                !!this.state.editMode &&
 
-            {!!this.state.editMode && <FormLabel>Long Press to delete a option</FormLabel> }
+
+                <View>
+                    <AddChoice onChangeText={(text)=>{console.log(text)}}/>
+
+
+                    <FormLabel>Select the correct answer</FormLabel>
+
+                    <EditableList
+                    elementsList ={elementsList}
+
+                    onSelectIndex={this.handleCorrectAnswerSelection}
+                />
+                    <FormLabel>Long Press to delete a option</FormLabel>
+
+
+                </View>
+
+            }
+
 
             <QuestionNavigationBar
                 style={questionNavigationBarStyle}/>

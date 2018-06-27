@@ -3,60 +3,46 @@ import {Alert, View} from "react-native";
 import React from "react";
 
 
-
-
-const elementsList=[
-    {
-        id : 1,
-        title :"title1"
-    },
-
-    {
-        id : 2,
-        title :"title2"
-    },
-
-    {
-        id : 3,
-        title :"title3"
-    }
-
-]
-
+const ASCII_a = 97
 export default class EditableList extends React.Component{
     constructor(props)
     {
       super(props)
         this.state={
-          elementsList :elementsList
+            elementsList :this.props.elementsList,
+            selectedIndex : 0
         }
     }
 
 
+    handleOnPress=(index)=>{
+        console.log("Pressed index : " + index.toString() )
+        this.setSelectedIndex(index)
+        this.props.onSelectIndex(index)
 
 
-    handleLongPress=(id)=>{
-        console.log("Choice List Long Press...."+id)
+    }
+
+    handleLongPress=(index)=>{
+        console.log("Choice List Long Press...."+index)
         Alert.alert(
             'Confirm Delete',
             'Delete this exam?',
             [
                 {text: 'Cancel'
                     , style: 'cancel'},
-                {text: 'OK', onPress:() => this.deleteById(id)},
+                {text: 'OK', onPress:() => this.deleteByIndex(index)},
             ],
             { cancelable: false }
         )
     }
 
-
-
-
-    deleteById=(id)=>{
-        let newList = this.state.elementsList.filter((element)=>{
-            console.log( element.id != id)
-            return element.id != id
+    deleteByIndex=(deleteIndex)=>{
+        let newList = this.state.elementsList.filter((element, index)=>{
+            console.log( index + " :Index to be deleted :" + deleteIndex == index)
+            return deleteIndex != index
         })
+        console.log("List after deletion: ")
         console.log(newList)
         this.setState({
             elementsList : newList
@@ -64,19 +50,31 @@ export default class EditableList extends React.Component{
     }
 
 
+    setSelectedIndex=(index)=>{
+        this.setState({
+            selectedIndex : index
+        })
 
+    }
+
+
+    convertNumericIndexToAlphabetical=(index)=>(String.fromCharCode( ASCII_a + index))
 
     render(){
-    return <View>
+        Alert.alert("Correct AnswerIndex : " + this.state.selectedIndex)
+
+        return <View>
         {
               this.state.elementsList.map(
                 (element,index)=>{
                     return <CheckBox
-                    onPress={() => this.setState({selectedId: element.id})}
-                    checked={this.state.selectedId == element.id}
-                    onLongPress ={()=>this.handleLongPress(element.id)}
-                    title={(index+1).toString() + " " + element.title}
+                    title={  this.convertNumericIndexToAlphabetical(index) + ". " + element.title}
                     key = {index}
+
+                    onPress={()=>{this.handleOnPress(index)}}
+                    checked={this.state.selectedIndex === index}
+                    onLongPress ={()=>this.handleLongPress(index)}
+
             /> })
 
         }
