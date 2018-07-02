@@ -1,6 +1,7 @@
 import Exam from "../../elements/Exam";
 import React from "react";
 import {Alert, View} from "react-native";
+import {Button} from "react-native";
 import {Text} from "react-native-elements";
 import EssayQuestionWidget from "../widgetContainer/EssayQuestionWidget";
 
@@ -56,9 +57,14 @@ export default class ExamList extends React.Component{
     }
 
 
+    redirectToEditAssignment=()=> {
+
+        this.props.navigation.navigate("AddQuestionWidget");
+    }
 
 
-deleteById=(id)=>{
+
+        deleteById=(id)=>{
         console.log("asdfdf")
     let newList = this.state.questionsList.filter((question)=>{
         console.log( question.id != id)
@@ -128,7 +134,12 @@ handlePress=(question,id)=>{
             <Exam onPress={this.handlePress} onLongPress={this.handleLongPress}
             questionsList ={this.state.questionsList} />
 
-            </View>
+            <Button title ="Add question"
+                    onPress={()=>this.redirectToEditAssignment()}
+            />
+
+
+        </View>
 
 
     }

@@ -22,7 +22,7 @@ export default  class Assignment extends Component {
             lessonId: 1,
             topicId: 1,
             clipboardContent: "",
-            editMode: false
+            editMode: true
         }
     }
 

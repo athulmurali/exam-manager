@@ -1,7 +1,7 @@
 import Exam from "../../elements/Exam";
 import React from "react";
-import {Alert, View} from "react-native";
-import {Text} from "react-native-elements";
+import {Alert, Button, View} from "react-native";
+import { Text} from "react-native-elements";
 import EssayQuestionWidget from "../widgetContainer/EssayQuestionWidget";
 
 const FILL = "FillInTheBlanksQuestionWidget"
@@ -72,6 +72,11 @@ export default class AssignmentList extends React.Component{
 
 
 
+    redirectToEditAssignment=()=>{
+
+        this.props.navigation.navigate("Assignment");
+
+    }
     redirectByType=(type)=>{
         switch (type){
 
@@ -127,6 +132,10 @@ export default class AssignmentList extends React.Component{
 
             <Exam onPress={this.handlePress} onLongPress={this.handleLongPress}
                   questionsList ={this.state.questionsList} />
+
+            <Button title ="Add question"
+                    onPress={()=>this.redirectToEditAssignment()}
+            />
 
         </View>
 

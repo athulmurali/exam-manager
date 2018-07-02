@@ -72,15 +72,18 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
             }
 
 
-            <QuestionNavigationBar
-                style={questionNavigationBarStyle}/>
-            <QuestionEditBar
-                style ={questionEditBarStyle}
-                onSelectAddQuestion ={()=>{
-                    this.props
-                        .navigation
-                        .navigate('AddQuestionWidget')
-                }}/>
+            {/*<QuestionNavigationBar*/}
+                {/*style={questionNavigationBarStyle}/>*/}
+
+
+
+            {/*<QuestionEditBar*/}
+                {/*style ={questionEditBarStyle}*/}
+                {/*onSelectAddQuestion ={()=>{*/}
+                    {/*this.props*/}
+                        {/*.navigation*/}
+                        {/*.navigate('AddQuestionWidget')*/}
+                {/*}}/>*/}
         </ScrollView>
     }
 }

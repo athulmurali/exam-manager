@@ -31,12 +31,6 @@ class  EssayQuestionWidget extends React.Component{
 
         this.props.navigation
             .navigate('ExamList')
-
-
-
-
-
-
     }
 
 
@@ -44,8 +38,6 @@ class  EssayQuestionWidget extends React.Component{
     handleOnCancelSelected=()=>{
 
         console.log("EditableQuestionContainer : faking-  exit without save");
-
-
 
         Alert.alert(
             'Confirm Exit',
@@ -93,17 +85,20 @@ class  EssayQuestionWidget extends React.Component{
                 <TextInput/>
 
             </AnswerContainer>
-            <QuestionNavigationBar
-                style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center'}}
-                onUp
-            />
+
 
             {!!this.state.editMode  && <EditableContainerUpdateNavBar
                 onUpdateSelected={ this.handleOnUpdateSelected}
                 onCancelSelected={ this.handleOnCancelSelected}
             />}
-            <QuestionEditBar
-                style ={questionEditBarStyle}/>
+            {/*<QuestionEditBar*/}
+                {/*style ={questionEditBarStyle}/>*/}
+
+
+            <QuestionNavigationBar
+                style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center'}}
+                onUp
+            />
 
         </ScrollView>
     }
