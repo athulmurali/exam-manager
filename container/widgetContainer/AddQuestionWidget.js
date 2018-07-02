@@ -145,8 +145,6 @@ export default  class AddQuestionWidget extends  React.Component{
 
                     </View>
 
-
-
         </View>
     }
 
