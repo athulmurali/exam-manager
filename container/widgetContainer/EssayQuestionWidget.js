@@ -79,8 +79,6 @@ class  EssayQuestionWidget extends React.Component{
 
             <EditableQuestionContainer editMode={this.state.editMode}/>
 
-            {/*<QuestionHeader questionIndex ={questionIndex}   questionName={"sasas"} points ={questionPoints}/>*/}
-            {/*<QuestionParagraph questionText = {questionText}  style={{padding :20}}/>*/}
             <AnswerContainer style={{padding :20}}>
                 <TextInput/>
 

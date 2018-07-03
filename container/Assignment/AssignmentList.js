@@ -70,14 +70,7 @@ export default class AssignmentList extends React.Component{
 
     deleteById=(id)=>{
         console.log("AssignmentList : deleteById " )
-        // let newList = this.state.questionsList.filter((question)=>{
-        //     console.log( question.id != id)
-        //     return question.id != id
-        // })
-        // console.log(newList)
-        // this.setState({
-        //     questionsList : newList
-        // })
+
         assignmentServiceObj.deleteAssign(id).then((res)=>{
 
             console.log("Successfully deleted assignment id : "+id)
@@ -164,7 +157,7 @@ export default class AssignmentList extends React.Component{
             <Text >Press to navigate to that question</Text>
 
             <Exam onPress={this.handlePress} onLongPress={this.handleLongPress}
-                  questionsList ={this.state.assignmentList} />
+                  examsList ={this.state.assignmentList} />
 
             <Button title ="Add question"
                     onPress={()=>this.redirectToEditAssignment()}

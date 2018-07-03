@@ -1,5 +1,4 @@
 import React from "react"
-import QuestionTypePicker from "../../elements/QuestionTypePicker";
 import {Picker, View} from "react-native";
 import {Button, Text} from "react-native-elements";
 
@@ -37,9 +36,14 @@ const homeworkOptions =[
 
      handlePressOk=()=>{
          if (this.state.homeworkType == "assignment")
-             this.props.navigation.navigate('AssignmentList')
+             this.props.navigation.navigate('AssignmentList',{
+                 topicId : this.props.navigation.getParam("topicId",-1)
+             })
 
-             else this.props.navigation.navigate('ExamQuestionsList')
+             else this.props.navigation.navigate('ExamsList',
+             {
+                 topicId : this.props.navigation.getParam("topicId",-1)
+             })
 
      }
 

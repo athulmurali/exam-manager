@@ -132,7 +132,7 @@ handlePress=(question,id)=>{
             <Text >Press to navigate to that question</Text>
 
             <Exam onPress={this.handlePress} onLongPress={this.handleLongPress}
-            questionsList ={this.state.questionsList} />
+            examsList ={this.state.questionsList} />
 
             <Button title ="Add question"
                     onPress={()=>this.redirectToEditAssignment()}

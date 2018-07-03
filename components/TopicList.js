@@ -42,7 +42,7 @@ class TopicList extends Component {
                 {this.state.topics.map((topic, index) => (
                     <ListItem
                         onPress={() => this.props.navigation
-                            .navigate("AssignmentList",
+                            .navigate("ChooseHomeWorkType",
                                 {
                                     topicId : topic.id})}
                         key={index}

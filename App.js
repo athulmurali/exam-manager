@@ -26,6 +26,7 @@ import FillInTheBlanksQuestionWidget from "./container/widgetContainer/FillInThe
 import MultipleChoiceQuestionWidget from "./container/widgetContainer/MultipleChoiceQuestionWidget";
 import ChooseHomeWorkType from "./container/widgetContainer/ChooseHomeWorkType";
 import AssignmentList from "./container/Assignment/AssignmentList";
+import ExamsList from "./container/Exam/ExamsList";
 
 class Home extends React.Component{
   static navigationOptions = {
@@ -94,6 +95,14 @@ class Home extends React.Component{
                       .navigate('ExamQuestionsList') } />
 
 
+          <Button title="Exams  List"
+                  onPress={() => this.props.navigation
+                      .navigate('ExamsList',{
+                          topicId : 81
+                      }) } />
+
+
+
           <Button title="ChooseHomeWorkType"
                   onPress={() => this.props.navigation
                       .navigate('ChooseHomeWorkType') } />
@@ -138,7 +147,8 @@ const App = createStackNavigator({
     FillInTheBlanksQuestionWidget,
     MultipleChoiceQuestionWidget,
     ChooseHomeWorkType,
-    AssignmentList
+    AssignmentList,
+    ExamsList
 
 
 
