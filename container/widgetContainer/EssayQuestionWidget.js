@@ -24,6 +24,7 @@ class  EssayQuestionWidget extends React.Component{
 
 
 
+
     handleOnUpdateSelected=()=>{
 
         Alert.alert("Saved successfully!")
@@ -51,9 +52,6 @@ class  EssayQuestionWidget extends React.Component{
             ],
             { cancelable: false }
         )
-
-
-
 
     }
 

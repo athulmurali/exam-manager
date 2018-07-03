@@ -23,44 +23,67 @@ export default class ExamsList extends React.Component{
     }
 
 
+
+
+
+
     redirectToEditExam=()=> {
 
-        this.props.navigation.navigate("AddQuestionWidget");
+        console.log("redirectToEditExam");
+        console.log("topicID : " + this.props.navigation.getParam("topicId",-1));
+        this.props.navigation.navigate("AddExamWidget",{
+            topicId : this.props.navigation.getParam("topicId",-1),
+            examId : this.props.navigation.getParam("examId",-1)
+        }
+        );
     }
 
 
-    redirectToQuestionsList=()=>{
+    redirectToQuestionsList=(exam, id)=>{
         console.log("ExamsList ->  ExamsQuestionsList");
         console.log(this.props.navigation);
         this.props.navigation.navigate("ExamQuestionsList",{
             topicId : this.props.navigation.getParam("topicId", -1),
-            examId : this.props.navigation.getParam("examId", -1)
+            examId : id
         });
     }
 
-    deleteById=(id)=>{
+    deleteById=(id,callback)=>{
+
+        // examServiceObj.deleteExam(id).then((res)=> {
+        //
+        //         console.log("Successfully deleted exam id : " + id)
+        //         console.log(res)
+        //         callback();
+        //
+        //     }
+        // )
+
+
+        console.log("ExamList : deleteById " )
 
         examServiceObj.deleteExam(id).then((res)=>{
 
-            console.log("Successfully deleted exam id : "+id)
+            console.log("Successfully deleted assignment id : "+id)
             console.log(res)
             this.fetchAllExams();
         })
 
-    }
+
+}
     fetchAllExams=()=>{
 
-        examServiceObj.findExamsByTopicId(this.props.navigation.getParam("topicId", -1)).
-        then((res=>this.setState({
-            examsList : res
-        }) ))
+        examServiceObj.findExamsByTopicId(this.state.topicId).
+        then(res=>this.setState({examsList : res}) )
 
     }
-    handlePress=(question,id)=>{
+
+
+    handlePress=(exam,id)=>{
         console.log("Exam  List Press....")
 
 
-        this.redirectToQuestionsList()
+        this.redirectToQuestionsList(exam,id)
 
 
         this.props.navigation.navigate("ExamQuestionsList",{
@@ -77,7 +100,11 @@ export default class ExamsList extends React.Component{
             [
                 {text: 'Cancel'
                     , style: 'cancel'},
-                {text: 'OK', onPress:() => this.deleteById(id)},
+                {text: 'OK', onPress:() =>
+                    {
+                        this.deleteById(id,this.fetchAllExams)
+
+                    }},
             ],
             { cancelable: false }
         )
@@ -85,7 +112,10 @@ export default class ExamsList extends React.Component{
 
     componentDidMount(){
         console.log("ExamsList : Mounted")
-        this.fetchAllExams();
+
+        this.setState({
+            topicId : this.props.navigation.getParam("topicId",-1)
+        },this.fetchAllExams)
     }
     render(){
         return<View>

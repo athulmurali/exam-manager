@@ -33,9 +33,7 @@ export default  class Assignment extends Component {
 
     saveAndExit=()=>{
 
-       const assignment = this.state.assignment
-
-
+        const assignment = this.state.assignment
         const assignmentServiceObj =AssignmentService.instance;
         assignmentServiceObj.createAssignment(281,assignment)
 

@@ -27,6 +27,7 @@ import MultipleChoiceQuestionWidget from "./container/widgetContainer/MultipleCh
 import ChooseHomeWorkType from "./container/widgetContainer/ChooseHomeWorkType";
 import AssignmentList from "./container/Assignment/AssignmentList";
 import ExamsList from "./container/Exam/ExamsList";
+import AddExamWidget from "./container/Exam/AddExamWidget";
 
 class Home extends React.Component{
   static navigationOptions = {
@@ -108,6 +109,13 @@ class Home extends React.Component{
                       .navigate('ChooseHomeWorkType') } />
 
 
+
+          <Button title="AddExamWidget"
+                  onPress={() => this.props.navigation
+                      .navigate('AddExamWidget') } />
+
+
+
           <TrueFalseQuestionEditor/>
 
         <QuestionTypeButtonGroupChooser/>
@@ -148,7 +156,8 @@ const App = createStackNavigator({
     MultipleChoiceQuestionWidget,
     ChooseHomeWorkType,
     AssignmentList,
-    ExamsList
+    ExamsList,
+    AddExamWidget
 
 
 

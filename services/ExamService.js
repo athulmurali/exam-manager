@@ -20,7 +20,7 @@ export default class ExamService {
     }
 
 
-    createAssignment(topicId, exam) {
+    createExam(topicId, exam) {
         return fetch(EXAM_API_URL.replace('TID', topicId),
             { body: JSON.stringify(exam),
                 headers: { 'Content-Type': 'application/json' },
@@ -36,7 +36,6 @@ export default class ExamService {
         ('EID', examId), {
             method: 'delete'
         }).then(function (response) {
-            console.log(response)
             return response.json();
         })
     }
