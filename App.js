@@ -20,7 +20,7 @@ import EssayQuestionWidget from "./container/widgetContainer/EssayQuestionWidget
 import FillInTheBlanks from "./container/FillInTheBlanks";
 import QuestionTrueFalseContainer from "./container/QuestionContainer/TrueFalseContainer/QuestionTrueFalseContainer";
 import AddQuestionWidget from "./container/widgetContainer/AddQuestionWidget";
-import ExamList from "./container/Exam/ExamList";
+import ExamQuestionsList from "./container/Exam/ExamQuestionsList";
 import TrueOrFalseQuestionWidget from "./container/widgetContainer/TrueOrFalseQuestionWidget";
 import FillInTheBlanksQuestionWidget from "./container/widgetContainer/FillInTheBlanksQuestionWidget";
 import MultipleChoiceQuestionWidget from "./container/widgetContainer/MultipleChoiceQuestionWidget";
@@ -89,9 +89,9 @@ class Home extends React.Component{
                       .navigate('AddQuestionWidget') } />
 
 
-          <Button title="Exam List"
+          <Button title="Exam Questions List"
                   onPress={() => this.props.navigation
-                      .navigate('ExamList') } />
+                      .navigate('ExamQuestionsList') } />
 
 
           <Button title="ChooseHomeWorkType"
@@ -133,7 +133,7 @@ const App = createStackNavigator({
     FillInTheBlanks,
     QuestionTrueFalseContainer,
     AddQuestionWidget,
-    ExamList,
+    ExamQuestionsList,
     TrueOrFalseQuestionWidget,
     FillInTheBlanksQuestionWidget,
     MultipleChoiceQuestionWidget,

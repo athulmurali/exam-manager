@@ -19,10 +19,9 @@ export default  class EditableQuestionContainer extends React.Component{
         super(props)
         this.state={
             editMode: true,
-            questionTitle :  "Unnamed",
-            questionType  :  "",
             titleText : "",
-            points : "0"
+            points : "0",
+            description : ""
         }
     }
 
@@ -36,6 +35,18 @@ export default  class EditableQuestionContainer extends React.Component{
     }
 
 
+    returnQuestionHeader=()=>{
+
+        console.log("returnQuestionHeader");
+        if ( this.props.onChangeQuestionText )
+
+            this.props.onChangeQuestionText({
+                    title :  this.state.titleText,
+                    points : this.state.points,
+                    description: this.state.description
+                })
+    }
+
 
     componentDidMount(){
         console.log("EditableContainer : Mounted")
@@ -48,16 +59,27 @@ export default  class EditableQuestionContainer extends React.Component{
 
     handleTitleTextChange=(text)=>{
         console.log("asdsdsds")
-        this.setState({titleText : text})
+        this.setState({titleText : text},  this.returnQuestionHeader)
         console.log(this.state)
+
+
     }
 
     handleChangePointsText=(points)=>{
         console.log("EditableContainer :change points text" + points);
-        this.setPoints(points)
+        this.setPoints(points,         this.returnQuestionHeader)
     }
 
-    setPoints=(points)=>{this.setState({points : points})}
+    handleDescriptionTextChange=(text)=>{
+        console.log("handleDescriptionTextChange")
+
+        this.setState({description : text},
+            this.returnQuestionHeader)
+
+
+    }
+
+    setPoints=(points,callback)=>{ this.setState({points : points}, callback) }
 
 
 
@@ -72,13 +94,10 @@ export default  class EditableQuestionContainer extends React.Component{
                 onChangeTitleText   =           {this.handleTitleTextChange }
                 onChangePointsText  =           {this.handleChangePointsText}
             />
-            <QuestionDescriptionContainer editMode={this.props.editMode}
-                                         onChangeText=
-                                             {(text)=>{this.setState({
-                                                 description: text
-                                             })}}
-                                          descriptionText ={this.state.description}
-                                             />
+            <QuestionDescriptionContainer
+                editMode            =           {this.props.editMode}
+                onChangeText        =           {this.handleDescriptionTextChange}
+                descriptionText     =           {this.state.description}/>
 
         </View>
 

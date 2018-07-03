@@ -30,7 +30,7 @@ class  EssayQuestionWidget extends React.Component{
         console.log("EditableQuestionContainer : faking save");
 
         this.props.navigation
-            .navigate('ExamList')
+            .navigate('ExamQuestionsList')
     }
 
 
@@ -41,13 +41,13 @@ class  EssayQuestionWidget extends React.Component{
 
         Alert.alert(
             'Confirm Exit',
-            'Exit to Exam List without saving changes?',
+            'Exit to Exam Questions List without saving changes?',
             [
                 {text: 'Cancel'
                     , style: 'cancel'},
                 {text: 'OK',
                     onPress:() => this.props.navigation
-                        .navigate('ExamList')},
+                        .navigate('ExamQuestionsList')},
             ],
             { cancelable: false }
         )

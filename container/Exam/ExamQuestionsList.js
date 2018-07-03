@@ -44,9 +44,9 @@ const questions = [
         ]
 
 
-export default class ExamList extends React.Component{
+export default class ExamQuestionsList extends React.Component{
     static navigationOptions={
-        title : "Exam List"
+        title : "Exam Questions List"
     }
     constructor(props)
     {
@@ -104,7 +104,7 @@ redirectByType=(type)=>{
         }
 }
 handlePress=(question,id)=>{
-        console.log("Exam List Press....")
+        console.log("Exam Questions List Press....")
 
     this.redirectByType(question.type)
 
@@ -112,7 +112,7 @@ handlePress=(question,id)=>{
     }
 
     handleLongPress=(id)=>{
-        console.log("Exam List Long Press...."+id)
+        console.log("Exam Questions List Long Press...."+id)
         Alert.alert(
             'Confirm Delete',
             'Delete this exam?',

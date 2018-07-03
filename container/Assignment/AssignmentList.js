@@ -3,6 +3,7 @@ import React from "react";
 import {Alert, Button, View} from "react-native";
 import { Text} from "react-native-elements";
 import EssayQuestionWidget from "../widgetContainer/EssayQuestionWidget";
+import AssignmentService from "../../services/AssignmentService";
 
 const FILL = "FillInTheBlanksQuestionWidget"
 const ESSAY= "EssayQuestionWidget"
@@ -10,6 +11,7 @@ const MCQ= "MCQ"
 const TF=  "QuestionTrueFalseContainer"
 
 
+const assignmentServiceObj =AssignmentService.instance;
 const questions = [
     {
         title: 'Question 1',
@@ -51,30 +53,57 @@ export default class AssignmentList extends React.Component{
     {
         super(props)
         this.state={
-            questionsList : questions
+            questionsList : questions,
+            assignmentList : [],
+            topicId : 281
         }
     }
 
 
+    componentDidMount(){
+        console.log("AssignmentList Mounted")
 
+        this.setState({
+            topicId : this.props.navigation.getParam("topicId",-1)
+        },this.fetchAllAssignments);
+    }
 
     deleteById=(id)=>{
-        console.log("asdfdf")
-        let newList = this.state.questionsList.filter((question)=>{
-            console.log( question.id != id)
-            return question.id != id
+        console.log("AssignmentList : deleteById " )
+        // let newList = this.state.questionsList.filter((question)=>{
+        //     console.log( question.id != id)
+        //     return question.id != id
+        // })
+        // console.log(newList)
+        // this.setState({
+        //     questionsList : newList
+        // })
+        assignmentServiceObj.deleteAssign(id).then((res)=>{
+
+            console.log("Successfully deleted assignment id : "+id)
+            console.log(res)
+            this.fetchAllAssignments();
         })
-        console.log(newList)
-        this.setState({
-            questionsList : newList
-        })
+
     }
 
 
 
+    fetchAllAssignments=()=>{
+        console.log("AssignmentList : fetchAllAssignments")
+        assignmentServiceObj.findAllAssignmentsByTopicId(this.state.topicId).
+        then((res=>this.setState({
+            assignmentList : res
+        }) ))
+
+    }
     redirectToEditAssignment=()=>{
 
-        this.props.navigation.navigate("Assignment");
+        console.log("assdfdfin list");
+        console.log(this.props.navigation.getParam("topicId", -1));
+        this.props.navigation.navigate("Assignment",{
+            topicId : this.props.navigation.getParam("topicId", -1)
+        });
 
     }
     redirectByType=(type)=>{
@@ -103,7 +132,7 @@ export default class AssignmentList extends React.Component{
         }
     }
     handlePress=(question,id)=>{
-        console.log("Exam List Press....")
+        console.log("Exam Questions List Press....")
 
         this.redirectByType(question.type)
 
@@ -111,7 +140,7 @@ export default class AssignmentList extends React.Component{
     }
 
     handleLongPress=(id)=>{
-        console.log("Exam List Long Press...."+id)
+        console.log("Exam Questions List Long Press...."+id)
         Alert.alert(
             'Confirm Delete',
             'Delete this exam?',
@@ -123,6 +152,10 @@ export default class AssignmentList extends React.Component{
             { cancelable: false }
         )
     }
+
+
+
+
     render(){
         return<View>
             <Text h4>Help</Text>
@@ -131,7 +164,7 @@ export default class AssignmentList extends React.Component{
             <Text >Press to navigate to that question</Text>
 
             <Exam onPress={this.handlePress} onLongPress={this.handleLongPress}
-                  questionsList ={this.state.questionsList} />
+                  questionsList ={this.state.assignmentList} />
 
             <Button title ="Add question"
                     onPress={()=>this.redirectToEditAssignment()}

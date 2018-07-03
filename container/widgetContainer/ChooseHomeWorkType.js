@@ -39,7 +39,7 @@ const homeworkOptions =[
          if (this.state.homeworkType == "assignment")
              this.props.navigation.navigate('AssignmentList')
 
-             else this.props.navigation.navigate('ExamList')
+             else this.props.navigation.navigate('ExamQuestionsList')
 
      }
 
