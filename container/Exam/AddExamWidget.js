@@ -55,9 +55,14 @@ export default  class AddExamWidget extends  React.Component{
             })
         }
 
+        this.exitToPreviousScreen();
+
     }
 
     exitToPreviousScreen=()=>{
+        this.props.navigation.navigate("ExamsList",{
+            topicId : this.state.topicId
+        })
 
     }
 

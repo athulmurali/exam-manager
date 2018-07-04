@@ -62,6 +62,8 @@ export default class AssignmentList extends React.Component{
 
     componentDidMount(){
         console.log("AssignmentList Mounted")
+        console.log("Printing nav props");
+        console.log(this.props.navigation.state.params);
 
         this.setState({
             topicId : this.props.navigation.getParam("topicId",-1)
@@ -99,37 +101,15 @@ export default class AssignmentList extends React.Component{
         });
 
     }
-    redirectByType=(type)=>{
-        switch (type){
 
-
-            case "FILL":
-                this.props.navigation.navigate(FILL)
-                break;
-            case "ESSAY":
-                this.props.navigation.navigate(ESSAY)
-                break;
-
-            case "MCQ":
-                this.props.navigation.navigate(MCQ)
-                break;
-
-            case "TF":
-                this.props.navigation.navigate(TF)
-                break;
-
-            default:
-                // this.props.navigation.navigate(this.)
-                break;
-
-        }
-    }
     handlePress=(question,id)=>{
         console.log("Exam Questions List Press....")
 
-        this.redirectByType(question.type)
 
-        // this.props.navigation.navigate("AddQuestionWidget")
+        this.props.navigation.navigate("Assignment",{
+            assignmentId : id,
+            topicId : this.state.topicId
+        })
     }
 
     handleLongPress=(id)=>{

@@ -51,4 +51,13 @@ export default class AssignmentService {
     }
 
 
+    findAssignmentById(assignmentId){
+        return fetch(
+            ASSIGN_DEL_API_URL
+                .replace('AID', assignmentId))
+            .then(function (response) {
+                return response.json();
+            })
+
+    }
 }

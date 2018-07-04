@@ -1,19 +1,55 @@
 import React, {Component} from 'react'
 import {Alert, ScrollView, View} from 'react-native'
-import {Badge, Divider, FormInput, FormLabel, FormValidationMessage, Icon, Text} from 'react-native-elements'
+import {FormLabel, Icon} from 'react-native-elements'
 import TextInput from "../elements/EssayTextInput";
 import * as Clipboard from "react-native/Libraries/Components/Clipboard/Clipboard";
 import EditModeToggleNavBar from "../container/EditModeToggleNavBar";
 import EditableQuestionContainer from "../container/EditableQuestionContainer";
-import SubmitBar from "../container/SubmitBar";
 import AssignmentService from "../services/AssignmentService";
 import EditableContainerUpdateNavBar from "../container/EditableContainerUpdateNavBar";
 
-
+const assignmentService = AssignmentService.instance
 export default  class Assignment extends Component {
 
     static navigationOptions = {title: 'Assignment'}
 
+
+
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            widgets: [],
+            courseId: 1,
+            moduleId: 1,
+            lessonId: 1,
+            topicId: -1,
+            clipboardContent: "",
+            editMode: true,
+            assignmentId : -1,
+            assignment : {
+                description : "",
+                points : "",
+                title : "",
+                id : -1
+            }
+        }
+
+    }
+
+    componentDidMount() {
+        console.log("Assignment : Mounted")
+        console.log("Printing nav props");
+        console.log(this.props.navigation.state.params);
+
+        this.setState({
+            topicId : this.props.navigation.getParam("topicId", -1),
+            assignmentId : this.props.navigation.getParam("assignmentId", -1)
+
+        },this.fetchAssignentInfo)
+
+
+    }
 
     setTopicId=(topicId)=>{
         this.setState({
@@ -29,6 +65,29 @@ export default  class Assignment extends Component {
 
     setAssignment=(assignment)=>{
         this.setState({assignment})
+    }
+
+
+
+
+    fetchAssignentInfo=()=>{
+        console.log("Assignment : Fetching assignment info to edit, id :" + this.state.assignmentId);
+        console.log(this.state)
+
+        if( this.state.assignmentId > -1){
+
+            assignmentService.findAssignmentById(this.state.assignmentId).then((res)=>{
+                console.log("fetched Assignment info for ; "+ this.state.assignmentId);
+                console.log(res)
+                this.setState({
+                    assignment : res
+                })
+
+            })
+
+        }
+
+
     }
 
     saveAndExit=()=>{
@@ -64,7 +123,6 @@ export default  class Assignment extends Component {
 
         }
         else{
-            console.log(undefined);
 
             console.log("Creating new assignment ")
 
@@ -75,11 +133,18 @@ export default  class Assignment extends Component {
 
         }
 
+        this.exitToPreviousScreen()
+
 
     }
 
     exitToPreviousScreen=()=>{
 
+        this.props.navigation.navigate("AssignmentList",
+            {
+                topicId: this.state.topicId
+            }
+        )
     }
 
 
@@ -99,35 +164,6 @@ export default  class Assignment extends Component {
 
 
 
-
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            widgets: [],
-            courseId: 1,
-            moduleId: 1,
-            lessonId: 1,
-            topicId: -1,
-            clipboardContent: "",
-            editMode: true,
-            assignmentId : -1,
-            assignment : {}
-        }
-
-    }
-
-    componentDidMount() {
-        const {navigation} = this.props;
-        console.log("Assignment Mounted")
-        console.log("Props in Assignment screen : ")
-        this.setState({
-            topicId : this.props.navigation.getParam("topicId", -1)
-        })
-        console.log(this.props.navigation.getParam("topicId", -1))
-
-
-    }
 
 
     readFromClipboard = async () => {
@@ -173,6 +209,11 @@ export default  class Assignment extends Component {
                 <EditableQuestionContainer
                     editMode                =   {this.state.editMode}
                     onChangeQuestionText    =   {this.handleQuestionHeaderChange}
+
+                    title                   =   {this.state.assignment.title}
+                    points                  =   {this.state.assignment.points}
+                    description             =   {this.state.assignment.description}
+
 
                 />
 

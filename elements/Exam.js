@@ -17,12 +17,6 @@ export default class Exam extends Component {
     handlePress=(exam, id)=>{
         console.log("Exam : Press")
         this.props.onPress(exam, id)
-
-
-
-
-
-
     }
   render() {
     return(

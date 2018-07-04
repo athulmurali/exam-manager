@@ -18,34 +18,48 @@ export default class ExamsList extends React.Component{
         this.state={
             examsList : [],
             topicId : -1,
+            updated : false
 
         }
     }
 
+    componentDidMount(){
+        console.log("ExamsList : Mounted")
 
+        this.setState({
+            topicId : this.props.navigation.getParam("topicId",-1)
+        },this.fetchAllExams)
+    }
 
+    fetchAllExams=()=>{
 
+        examServiceObj.findExamsByTopicId(this.state.topicId).
+        then(res=>this.setState({examsList : res}, this.setUpdatedState(true)) )
 
+    }
+
+    setUpdatedState=(val)=>{
+        this.setState({
+            updated : val
+        })
+ }
 
     redirectToEditExam=()=> {
-
+        this.setUpdatedState(false)
         console.log("redirectToEditExam");
         console.log("topicID : " + this.props.navigation.getParam("topicId",-1));
         this.props.navigation.navigate("AddExamWidget",{
-            topicId : this.props.navigation.getParam("topicId",-1),
-            examId : this.props.navigation.getParam("examId",-1)
+            topicId : this.state.topicId,
+            examId : 2
         }
         );
     }
 
-
     redirectToQuestionsList=(exam, id)=>{
         console.log("ExamsList ->  ExamsQuestionsList");
-        console.log(this.props.navigation);
-        this.props.navigation.navigate("ExamQuestionsList",{
-            topicId : this.props.navigation.getParam("topicId", -1),
-            examId : id
-        });
+        console.log("sending examId : " + id)
+        console.log(this.props.navigation.state.params);
+        this.props.navigation.navigate("ExamQuestionsList",{examId : id});
     }
 
     deleteById=(id,callback)=>{
@@ -71,25 +85,10 @@ export default class ExamsList extends React.Component{
 
 
 }
-    fetchAllExams=()=>{
-
-        examServiceObj.findExamsByTopicId(this.state.topicId).
-        then(res=>this.setState({examsList : res}) )
-
-    }
-
 
     handlePress=(exam,id)=>{
-        console.log("Exam  List Press....")
-
-
+        console.log("Exam  List Press. id ..." + id)
         this.redirectToQuestionsList(exam,id)
-
-
-        this.props.navigation.navigate("ExamQuestionsList",{
-            examId :this.state.examId,
-            topicId: this.state.topicId
-        })
     }
 
     handleLongPress=(id)=>{
@@ -110,14 +109,14 @@ export default class ExamsList extends React.Component{
         )
     }
 
-    componentDidMount(){
-        console.log("ExamsList : Mounted")
 
-        this.setState({
-            topicId : this.props.navigation.getParam("topicId",-1)
-        },this.fetchAllExams)
-    }
     render(){
+        console.log("Status updated :" + this.state.updated)
+        if (!this.state.updated) {
+                console.log("false *************************")
+                this.fetchAllExams();
+                }
+
         return<View>
             <Text h4>Help</Text>
             {console.log("Topic id in exams list : " + this.props.navigation.getParam("topicId",-100))}
@@ -130,7 +129,9 @@ export default class ExamsList extends React.Component{
                   examsList ={this.state.examsList} />
 
             <Button title ="Add Exam"
-                    onPress={()=>this.redirectToEditExam()}/>
+                    onPress={()=> {
+                        this.redirectToEditExam()
+                    }}/>
 
 
         </View>

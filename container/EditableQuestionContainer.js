@@ -1,11 +1,7 @@
 import React from "react";
-import {Text} from "react-native-elements";
-import {StyleSheet, View,Alert} from "react-native";
-import EditModeToggleNavBar from "./EditModeToggleNavBar";
+import {View} from "react-native";
 import EditableQuestionHeaderContainer from "./QuestionHeader/EditableQuestionHeaderContainer";
 import QuestionDescriptionContainer from "./QuestionDescription/QuestionDescriptionContainer";
-import EditableContainerUpdateNavBar from "./EditableContainerUpdateNavBar";
-
 
 
 export default  class EditableQuestionContainer extends React.Component{
@@ -19,9 +15,9 @@ export default  class EditableQuestionContainer extends React.Component{
         super(props)
         this.state={
             editMode: true,
-            titleText : "",
-            points : "0",
-            description : ""
+            title : this.props.title,
+            points :   this.props.points.toString(),
+            description : this.props.description
         }
     }
 
@@ -41,13 +37,23 @@ export default  class EditableQuestionContainer extends React.Component{
         if ( this.props.onChangeQuestionText )
 
             this.props.onChangeQuestionText({
-                    title :  this.state.titleText,
+                    title :  this.state.title,
                     points : this.state.points,
                     description: this.state.description
                 })
     }
 
 
+    componentWillReceiveProps(newProps){
+        console.log("................")
+        this.setState ({
+            title : newProps.title,
+            points :   newProps.points.toString(),
+            description : newProps.description
+
+        })
+
+    }
     componentDidMount(){
         console.log("EditableContainer : Mounted")
     }
@@ -59,7 +65,7 @@ export default  class EditableQuestionContainer extends React.Component{
 
     handleTitleTextChange=(text)=>{
         console.log("asdsdsds")
-        this.setState({titleText : text},  this.returnQuestionHeader)
+        this.setState({title : text},  this.returnQuestionHeader)
         console.log(this.state)
 
 
@@ -88,7 +94,7 @@ export default  class EditableQuestionContainer extends React.Component{
 
             <EditableQuestionHeaderContainer
                 editMode            =           {this.props.editMode}
-                titleText           =           {this.state.titleText}
+                titleText           =           {this.state.title}
                 points              =           {this.state.points}
 
                 onChangeTitleText   =           {this.handleTitleTextChange }

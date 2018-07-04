@@ -4,12 +4,15 @@ import {Alert, View} from "react-native";
 import {Button} from "react-native";
 import {Text} from "react-native-elements";
 import EssayQuestionWidget from "../widgetContainer/EssayQuestionWidget";
+import QuestionService from "../../services/QuestionService";
 
 const FILL = "FillInTheBlanksQuestionWidget"
 const ESSAY= "EssayQuestionWidget"
 const MCQ= "MCQ"
 const TF=  "QuestionTrueFalseContainer"
 
+
+const  questionService = QuestionService.instance;
 
 const questions = [
     {
@@ -24,7 +27,7 @@ const questions = [
     {	title: 'Question 2',
         subtitle: 'Fill-in the blanks',
         icon: 'code',
-        type :"FILL",
+        type :"BLANKS",
         id: 2
 
     },
@@ -44,45 +47,39 @@ const questions = [
         ]
 
 
+
+const getIconNameByQuestionType=(question)=>{
+
+   switch (question.type){
+       case "BLANKS":
+           return "code"
+
+       case "ESSAY": return "subject"
+
+
+       case "MCQ": return "list"
+
+
+       case "TF": return "check"
+
+
+       default:
+           // this.props.navigation.navigate(this.)
+           return "";
+   }
+
+}
+
 export default class ExamQuestionsList extends React.Component{
     static navigationOptions={
         title : "Exam Questions List"
     }
-    constructor(props)
-    {
-        super(props)
-        this.state={
-            questionsList : questions
-        }
-    }
 
-
-    redirectToEditAssignment=()=> {
-
-        this.props.navigation.navigate("AddQuestionWidget");
-    }
-
-
-
-        deleteById=(id)=>{
-        console.log("asdfdf")
-    let newList = this.state.questionsList.filter((question)=>{
-        console.log( question.id != id)
-        return question.id != id
-    })
-    console.log(newList)
-    this.setState({
-        questionsList : newList
-    })
-}
-
-
-
-redirectByType=(type)=>{
+    redirectByType=(type)=>{
         switch (type){
 
 
-            case "FILL":
+            case "BLANKS":
                 this.props.navigation.navigate(FILL)
                 break;
             case "ESSAY":
@@ -102,11 +99,63 @@ redirectByType=(type)=>{
                 break;
 
         }
+    }
+
+
+    componentDidMount(){
+        console.log("Exam Questions List : Mounted ");
+        this.fetchAllQuestionsByExamId(1);
+    }
+
+    constructor(props)
+    {
+        super(props)
+
+        console.warn("Printing exam Questions list nav params")
+        console.warn(this.props.navigation.state.params )
+
+        this.state={
+            questionsList : questions,
+            examId : this.props.navigation.getParam("examId",-1)
+        }
+    }
+
+
+    fetchAllQuestionsByExamId=()=>{
+        questionService.findQuestionsByExamId(this.state.examId).then(res=>{
+            console.log("ExamQuestionsList : Fetching  Questions for examId : " + this.state.examId);
+            this.setState({
+                questionsList :res
+            },()=>console.log(this.state.questionsList))
+        });
+    }
+
+    redirectToEditAssignment=()=> {
+
+        this.props.navigation.navigate("AddQuestionWidget");
+    }
+
+
+
+    deleteById=(id)=>{
+        console.log("asdfdf")
+    let newList = this.state.questionsList.filter((question)=>{
+        console.log( question.id != id)
+        return question.id != id
+    })
+    console.log(newList)
+    this.setState({
+        questionsList : newList
+    })
 }
-handlePress=(question,id)=>{
+
+
+
+
+    handlePress=(question,id)=>{
         console.log("Exam Questions List Press....")
 
-    this.redirectByType(question.type)
+        this.redirectByType(question.type)
 
         // this.props.navigation.navigate("AddQuestionWidget")
     }
@@ -124,7 +173,10 @@ handlePress=(question,id)=>{
             { cancelable: false }
         )
     }
+
     render(){
+        console.log(this.props.navigation.getParam("examId"), -1)
+
         return<View>
             <Text h4>Help</Text>
 
@@ -143,4 +195,8 @@ handlePress=(question,id)=>{
 
 
     }
+
+
+
+
 }
