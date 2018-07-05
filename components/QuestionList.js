@@ -15,6 +15,8 @@ class QuestionList extends Component {
   componentDidMount() {
     const {navigation} = this.props;
     const examId = navigation.getParam("examId")
+
+
     fetch("http://localhost:8080/api/exam/"+examId+"/question")
       .then(response => (response.json()))
       .then(questions => this.setState({questions}))

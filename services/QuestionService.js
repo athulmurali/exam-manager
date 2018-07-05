@@ -20,8 +20,9 @@ export default class QuestionService {
     }
 
 
-    createQuestion(examId, question) {
-        return fetch(QUESTION_API_URL.replace('EID', examId),
+    createEssayExamQuestion             (examId, question) {
+        return fetch(QUESTION_API_URL.replace('EID', examId)
+                .replace('question',"essay"),
             { body: JSON.stringify(question),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
@@ -30,6 +31,43 @@ export default class QuestionService {
 
             return response.json(); })
     }
+
+    createFillInTheBlanksExamQuestion   (examId, question) {
+        return fetch(QUESTION_API_URL.replace('EID', examId)
+                .replace("question","blanks")
+            ,
+            { body: JSON.stringify(question),
+                headers: { 'Content-Type': 'application/json' },
+                method: 'POST'
+            }).then(function (response)
+        {
+
+            return response.json(); })
+    }
+
+    createTrueOrFalseExamQuestion       (examId, question) {
+        return fetch(QUESTION_API_URL.replace('EID', examId)
+                .replace("question","truefalse"),
+            { body: JSON.stringify(question),
+                headers: { 'Content-Type': 'application/json' },
+                method: 'POST'
+            }).then(function (response)
+        {
+
+            return response.json(); })
+    }
+
+    createMultipleChoiceExamQuestion    (examId, question) {
+        return fetch(QUESTION_API_URL.replace('EID', examId).replace("question","choice"),
+            { body: JSON.stringify(question),
+                headers: { 'Content-Type': 'application/json' },
+                method: 'POST'
+            }).then(function (response)
+        {
+
+            return response.json(); })
+    }
+
 
     deleteQuestion(questionId) {
         return fetch(QUESTION_DEL_API_URL.replace

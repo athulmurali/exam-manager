@@ -95,7 +95,7 @@ export default class ExamQuestionsList extends React.Component{
         console.warn(this.props.navigation.state.params )
 
         this.state={
-            questionsList : questions,
+            questionsList : [],
             examId : this.props.navigation.getParam("examId",-1)
         }
     }
@@ -103,7 +103,7 @@ export default class ExamQuestionsList extends React.Component{
 
     fetchAllQuestionsByExamId=()=>{
 
-        questionService.findQuestionsByExamId(1).then(res=>{
+        questionService.findQuestionsByExamId(this.state.examId).then(res=>{
 
             console.log("ExamQuestionsList : Fetching  Questions for examId : " + this.state.examId);
             this.setState({
@@ -116,9 +116,10 @@ export default class ExamQuestionsList extends React.Component{
     console.log("AddQuestionWidget : ");
     console.log(this.state.examId);
 
-        this.props.navigation.navigate("AddQuestionWidget",{
+        this.props.navigation.navigate("AddQuestionWidget",
+            {
             examId :this.state.examId
-        })
+             })
     }
 
 

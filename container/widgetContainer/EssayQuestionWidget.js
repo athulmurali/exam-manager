@@ -45,21 +45,40 @@ class  EssayQuestionWidget extends React.Component{
     }
 
     handleOnUpdateSelected=()=>{
+        const questionId = this.props.navigation.getParam("questionId",  -1000);
+        const examId =  this.props.navigation.getParam("examId", -10000);
 
-        Alert.alert("Saved successfully!")
 
-        console.log("EditableQuestionContainer : faking save");
+        if(  questionId > -1 )
+            console.log("Essay question : exists")
 
-        questionService.createQuestion()
+        else
+        {
 
-        //
-        // this.props.navigation
-        //     .navigate('ExamQuestionsList')
+            questionService.createEssayExamQuestion
+            (examId,  this.state.question)
+                .then(res=>{
+                console.log("Saved essay question successfully")
+                    console.log(res);
+
+                    Alert.alert("Saved successfully!")
+
+
+                    this.props.navigation
+                        .navigate('ExamQuestionsList',{
+                            examId : examId
+                        })
+            })
+
+        }
+
+
+
     }
 
     handleOnCancelSelected=()=>{
 
-        console.log("EditableQuestionContainer : faking-  exit without save");
+        const examId =  this.props.navigation.getParam("examId", -10000);
 
         Alert.alert(
             'Confirm Exit',
@@ -68,8 +87,10 @@ class  EssayQuestionWidget extends React.Component{
                 {text: 'Cancel'
                     , style: 'cancel'},
                 {text: 'OK',
-                    onPress:() => this.props.navigation
-                        .navigate('ExamQuestionsList')},
+                    onPress:() => this.props.navigation.navigate('ExamQuestionsList',
+                        {
+                            examId : examId
+                        })}
             ],
             { cancelable: false }
         )
