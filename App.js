@@ -56,15 +56,6 @@ class Home extends React.Component{
                   .navigate('Assignment') } />
 
 
-          <Button title="MCQ "
-                  onPress={() => this.props.navigation
-                      .navigate('MCQ') } />
-
-          {/*<Button title="Fill in the blanks"*/}
-                  {/*onPress={() => this.props.navigation*/}
-                      {/*.navigate('FillInTheBlanks') } />*/}
-
-
           <Button title="EssayQuestionWidget"
                   onPress={() => this.props.navigation
                       .navigate('EssayQuestionWidget') } />
@@ -116,16 +107,16 @@ class Home extends React.Component{
 
 
 
-          <TrueFalseQuestionEditor/>
+          {/*<TrueFalseQuestionEditor/>*/}
 
-        <QuestionTypeButtonGroupChooser/>
+        {/*<QuestionTypeButtonGroupChooser/>*/}
 
-        {/*<Exam/>*/}
+        {/*/!*<Exam/>*!/*/}
 
-        <Icons/>
-        <View style={{padding: 20}}>
-          <TextHeadings/>
-        </View>
+        {/*<Icons/>*/}
+        {/*<View style={{padding: 20}}>*/}
+          {/*<TextHeadings/>*/}
+        {/*</View>*/}
       </ScrollView>
     )
   }

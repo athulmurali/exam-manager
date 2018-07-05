@@ -32,17 +32,17 @@ const EditableHeader = (props) => {
 
                        maxLength={MAX_TITLE_LENGTH}
             />
-            <Icon containerStyle={styles.floatingMenuButtonStyle}
-                  raised
-                  right
-                  reverse
+            {/*<Icon containerStyle={styles.floatingMenuButtonStyle}*/}
+                  {/*raised*/}
+                  {/*right*/}
+                  {/*reverse*/}
 
-                  color='grey'
-                  name='edit'
-                  type='font-awesome'
-                  onPress={() =>
-                      Alert.alert('Do you want to edit this ?')}
-            />
+                  {/*color='grey'*/}
+                  {/*name='edit'*/}
+                  {/*type='font-awesome'*/}
+                  {/*onPress={() =>*/}
+                      {/*Alert.alert('Do you want to edit this ?')}*/}
+            {/*/>*/}
 
         { props.titleText.length >= MAX_TITLE_LENGTH || props.titleText.length < 1
 

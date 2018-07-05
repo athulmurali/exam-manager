@@ -1,5 +1,5 @@
 import React from "react";
-import {FormLabel} from "react-native-elements";
+import {FormLabel, Text} from "react-native-elements";
 import {Alert, ScrollView, StyleSheet, View} from "react-native";
 import EditableQuestionContainer from "../EditableQuestionContainer";
 import EditModeToggleNavBar from "../EditModeToggleNavBar";
@@ -7,6 +7,8 @@ import EditableList from "../../components/EditableList";
 import AddChoice from "../../components/AddChoice";
 import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
 import QuestionService from "../../services/QuestionService";
+import MCQ from "../../components/MCQ";
+import RadioButtonList from "../../components/RadioButtonList";
 
 const styles = StyleSheet.create({
     checkBoxContainer : {
@@ -257,28 +259,29 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
                     <FormLabel>Long Press to delete a option</FormLabel>
 
 
-
+                    <EditableContainerUpdateNavBar
+                        onUpdateSelected={ this.handleOnUpdateSelected}
+                        onCancelSelected={ this.handleOnCancelSelected}
+                    />
                 </View>
 
             }
 
 
-            {/*<QuestionNavigationBar*/}
-                {/*style={questionNavigationBarStyle}/>*/}
-            {/*<QuestionEditBar*/}
-                {/*style ={questionEditBarStyle}*/}
-                {/*onSelectAddQuestion ={()=>{*/}
-                    {/*this.props*/}
-                        {/*.navigation*/}
-                        {/*.navigate('AddQuestionWidget')*/}
-                {/*}}/>*/}
 
+            {
+                !this.state.editMode &&
+                <View>
+                    <FormLabel>Select one of the following choices</FormLabel>
+                    <RadioButtonList style={{padding: 15}}
+                                     options={!!this.state.question.options ?
+                                         this.state.question.options : []}
+                    />
 
+                </View>
 
-            <EditableContainerUpdateNavBar
-                onUpdateSelected={ this.handleOnUpdateSelected}
-                onCancelSelected={ this.handleOnCancelSelected}
-            />
+            }
+
         </ScrollView>
     }
 }

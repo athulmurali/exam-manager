@@ -10,6 +10,7 @@ var radio_props = [
     {label: 'This question is lame', value: 2 }
 ];
 
+
 class RadioButtonList extends  React.Component{
     constructor(props){
         super(props);
@@ -18,11 +19,28 @@ class RadioButtonList extends  React.Component{
         }
     }
 
+    optionsToRadioList=(options)=>{
+        return options.map((option,index)=>{
+            console.log("optionsToRadioList :   " + option)
+            return {
+                label : option,
+                index : index
+            }
+        })
+
+    }
+
+    componentDidMount(){
+
+    }
+
     render (){
+
+
         return (
             <View>
                 <RadioForm
-                    radio_props={radio_props}
+                    radio_props={  this.optionsToRadioList(this.props.options)}
                     initial={0}
                     onPress={(value) => {this.setState({value:value})}}
                 />

@@ -158,6 +158,7 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
                 <BlanksQuestionContainer
                     blanksQuestionText={"Test input for blanks"}
                     editMode = {!!this.state.editMode}
+                    onChangeText={this.handleChangeBlanksText}
                 />
 
             </AnswerContainer>

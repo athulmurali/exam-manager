@@ -15,7 +15,14 @@ export default  class AddExamWidget extends  React.Component{
         this.state ={
 
             editMode: true,
-            topicId : -1
+            topicId : -1,
+            exam : {
+                title : "",
+                points : "0",
+                description :""
+
+        }
+
 
         }
     }
@@ -111,10 +118,15 @@ export default  class AddExamWidget extends  React.Component{
 
 
             <EditableQuestionContainer
-                editMode={this.state.editMode}
+
+                editMode                =   {this.state.editMode}
+
+
                 onChangeQuestionText    =   {this.handleQuestionHeaderChange}
 
-
+                title                   =   {this.state.exam.title}
+                points                  =   {this.state.exam.points}
+                description             =   {this.state.exam.description}
             />
 
             {!!this.state.editMode  &&

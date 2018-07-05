@@ -8,7 +8,7 @@ import QuestionService from "../../services/QuestionService";
 
 const FILL = "FillInTheBlanksQuestionWidget"
 const ESSAY= "EssayQuestionWidget"
-const MCQ= "MCQ"
+const MCQ= "MultipleChoiceQuestionWidget"
 const TF=  "TrueOrFalseQuestionWidget"
 
 

@@ -49,8 +49,7 @@ export default class ExamsList extends React.Component{
         console.log("redirectToEditExam");
         console.log("topicID : " + this.props.navigation.getParam("topicId",-1));
         this.props.navigation.navigate("AddExamWidget",{
-            topicId : this.state.topicId,
-            examId : 2
+            topicId : this.state.topicId
         }
         );
     }

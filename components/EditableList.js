@@ -52,6 +52,8 @@ export default class EditableList extends React.Component{
                     checked={this.props.correctOptionIndex === index}
                     onLongPress ={()=>this.handleLongPress(index)}
 
+
+
             /> })
 
         }
