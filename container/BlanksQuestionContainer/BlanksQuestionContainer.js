@@ -23,6 +23,7 @@ export default  class  BlanksQuestionContainer extends React.Component{
         console.log("BlanksQuestionContainer : handleOnChangeText")
         console.log("BlanksQuestionContainer : text new : " + text )
         this.setNewText(text)
+        this.props.onChangeTextWithBrackets(text)
     }
 
     setNewText(newText){

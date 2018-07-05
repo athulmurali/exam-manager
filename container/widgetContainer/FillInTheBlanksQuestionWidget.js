@@ -7,6 +7,7 @@ import BlanksQuestionContainer from "../BlanksQuestionContainer/BlanksQuestionCo
 import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
 import QuestionService from "../../services/QuestionService";
 import FormLabel from "react-native-elements/src/form/FormLabel";
+import BlanksUtil from "../BlanksQuestionContainer/BlanksUtil";
 
 const styles = StyleSheet.create({
 
@@ -30,14 +31,14 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
 
 
         this.state={
-            answer : true,
             editMode :true,
 
             question : {
                 title : "",
                 points : "0",
                 description :"",
-                textWithBlanks: "",
+                textWithBrackets: "",
+                variablesList:[],
                 variables:"testone=1"
             }
         }
@@ -124,11 +125,29 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
         })
     }
 
+    handleOnChangeTextWithBrackets=(textWithBrackets)=>{
+
+
+        const variableList = BlanksUtil.textBoxedTextToVariableList(BlanksUtil.textToTextBoxedText(textWithBrackets))
+        const data = {
+            textWithBrackets : textWithBrackets,
+            variableList  :variableList
+
+        }
+        console.log("Question :   onChangeQuestionText "  );
+        const newQuestionData =  {...this.state.question,...data}
+
+        console.log("Question data after textWithBlanks change : ")
+        this.setState({
+            question : newQuestionData
+        },()=>console.log(this.state))
+
+
+
+
+    }
     render(){
-        const questionText = "Longest paragraph in the world is not really easy to type. " +
-            "That's why I keep the descriptions short"
-        const questionIndex = 1
-        const questionPoints = 100
+
 
         console.log("FillInTheBlanksQuestionWidget : rendered")
 
@@ -160,6 +179,7 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
                     blanksQuestionText={"Test input for blanks"}
                     editMode = {!!this.state.editMode}
                     onChangeText={this.handleChangeBlanksText}
+                    onChangeTextWithBrackets = {this.handleOnChangeTextWithBrackets}
                 />
 
             </AnswerContainer>

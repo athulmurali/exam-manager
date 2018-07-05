@@ -2,82 +2,11 @@ import {TextInput, View} from "react-native";
 import {Text} from "react-native-elements";
 import React from "react";
 import {fillInTheBlankBox} from "../../styles/FillInTheBlankStyle";
+import BlanksUtil from "./BlanksUtil";
 
 export default  class BlanksWithTextBoxView extends  React.Component{
 
-    textToTextBoxedText=(givenText)=>{
 
-        let listWithBlanks=[]
-        let tempWord = ""
-        let tempBlank = ""
-        let tempStr= ""
-        for (var i = 0; i < givenText.length; i++) {
-
-            console.log(givenText.charAt(i));
-
-            const currentChar = givenText.charAt(i)
-            if (currentChar == "[" )
-            {
-                console.log("current open");
-
-                if (tempWord !=""){
-                    const tempDict =
-                        {
-                        type: "word",
-                        value : tempWord
-                        }
-                    console.log(tempDict)
-
-                    listWithBlanks.push(tempDict)
-                }
-                tempWord = ""
-                continue;
-            }
-
-             else if (currentChar == "]")
-             {
-
-                if (tempWord !=""){
-                    const tempDict =
-                        {
-                            type: "blank",
-                            value : tempWord
-                        }
-                    console.log(tempDict)
-
-                    listWithBlanks.push(tempDict)
-                }
-
-                tempWord = ""
-                 continue;
-
-
-            }
-
-            else{
-                tempWord = tempWord + givenText.charAt(i)
-
-                if (i == givenText.length -1){
-                    console.log("last char")
-                    const tempDict =
-                        {
-                            type: "word",
-                            value : tempWord
-                        }
-                    console.log(tempDict)
-
-                    listWithBlanks.push(tempDict)
-                }
-
-            }
-
-        }
-
-        console.log("list with blanks :");
-
-        console.log(listWithBlanks);
-        return listWithBlanks
-    }
 
     constructor(props)
     {
@@ -90,7 +19,7 @@ export default  class BlanksWithTextBoxView extends  React.Component{
 
     returnTextAndBlank=(givenText)=>{
 
-        return  this.textToTextBoxedText(givenText).map((word,index)=>{
+        return  BlanksUtil.textToTextBoxedText(givenText).map((word,index)=>{
             return (word.type == "word") ?
                  <Text key ={index} h4> {word.value}</Text> :
 
@@ -106,6 +35,7 @@ export default  class BlanksWithTextBoxView extends  React.Component{
         const givenText = this.props.blanksQuestionText.trim()
         return <View  style={{padding: 15}}>
                 <View  style={{flexDirection: 'row', flexWrap: 'wrap', padding: 15}}>
+
                     {this.returnTextAndBlank(givenText)}
                 </View>
 
