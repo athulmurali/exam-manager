@@ -3,7 +3,7 @@ import {Text} from "react-native-elements";
 import React from "react";
 import {fillInTheBlankBox} from "../../styles/FillInTheBlankStyle";
 
-export default  class BlanksParagraphView extends  React.Component{
+export default  class BlanksWithTextBoxView extends  React.Component{
 
     textToTextBoxedText=(givenText)=>{
 

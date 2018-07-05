@@ -1,7 +1,7 @@
 import React from "react";
 import {View} from "react-native";
 import BlanksQuestionEditor from "./BlanksQuestionEditor";
-import BlanksParagraphView from "./BlanksParagraphView";
+import BlanksWithTextBoxView from "./BlanksWithTextBoxView";
 
 export default  class  BlanksQuestionContainer extends React.Component{
     constructor(props)
@@ -45,7 +45,7 @@ export default  class  BlanksQuestionContainer extends React.Component{
                 <BlanksQuestionEditor text={this.state.newText} onChangeText={this.handleOnChangeText}/> }
 
 
-                <BlanksParagraphView blanksQuestionText={this.state.newText} />
+                <BlanksWithTextBoxView blanksQuestionText={this.state.newText} />
 
 
         </View>

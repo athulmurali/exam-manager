@@ -37,6 +37,7 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
                 title : "",
                 points : "0",
                 description :"",
+                textWithBlanks: "",
                 variables:"testone=1"
             }
         }
