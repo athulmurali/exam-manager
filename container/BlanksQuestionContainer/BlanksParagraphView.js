@@ -103,7 +103,7 @@ export default  class BlanksParagraphView extends  React.Component{
         return <View  style={{padding: 15}}>
                 {/*<Text h4>Blanks Container </Text>*/}
                 <View  style={{flexDirection: 'row', flexWrap: 'wrap', padding: 15}}>
-                    {this.returnTextAndBlank(givenText)}
+                    {this.returnTextAndBlank({givenText})}
                 </View>
 
 

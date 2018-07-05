@@ -1,9 +1,11 @@
 import React from "react";
 import {CheckBox, Text} from "react-native-elements";
-import {ScrollView, StyleSheet} from "react-native";
+import {Alert, ScrollView, StyleSheet} from "react-native";
 import AnswerContainer from "../../components/AnswerContainer";
 import EditableQuestionContainer from "../EditableQuestionContainer";
 import EditModeToggleNavBar from "../EditModeToggleNavBar";
+import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
+import QuestionService from "../../services/QuestionService";
 
 const styles = StyleSheet.create({
     checkBoxContainer : {
@@ -15,6 +17,7 @@ const styles = StyleSheet.create({
 
 });
 
+const questionService = QuestionService.instance;
 
 export default class TrueOrFalseQuestionWidget extends React.Component{
     static navigationOptions={
@@ -23,23 +26,27 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
 
     constructor(props){
         super(props)
+
+
+
         this.state={
             answer : true,
             editMode :true,
             question : {
                 title : "",
                 points : "0",
-                description :""
+                description :"",
+                answer : false
             }
         }
 
     }
 
     componentDidMount(){
-        console.log("QuestionTrueFalseContainer : Mounted");
+        console.log("QuestionTrueFalseWidget : Mounted");
     }
     componentWillUnmount(){
-        console.log("QuestionTrueFalseContainer : Unmounted");
+        console.log("QuestionTrueFalseWidget : Unmounted");
     }
 
     handleToggleEditMode=(editMode)=>{
@@ -54,6 +61,41 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
         this.setState({
             question : data
         },()=>console.log(this.state))
+
+
+    }
+
+    handleOnUpdateSelected=()=>{
+        const questionId = this.props.navigation.getParam("questionId",  -1000);
+        const examId =  this.props.navigation.getParam("examId", -10000);
+
+
+
+
+        console.log("On uodate select.....")
+
+        if(  questionId > -1 )
+            console.log("TrueFALse  question : exists")
+
+        else
+        {
+
+            questionService.createTrueOrFalseExamQuestion(examId,  this.state.question)
+                .then(res=>{
+                    console.log("Saved TrueFALse question successfully")
+                    console.log(res);
+
+                    Alert.alert("Saved successfully!")
+
+
+                    this.props.navigation
+                        .navigate('ExamQuestionsList',{
+                            examId : examId
+                        })
+                })
+
+        }
+
 
 
     }
@@ -87,8 +129,15 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
             />
                  {!!this.state.editMode &&
                     <CheckBox
-                    onPress={() => this.setState({answer: !this.state.answer})}
-                    checked={this.state.answer} title='The answer is true'/>}
+                    onPress={() =>{
+                        let newQuestionState = {...this.state.question};
+                        newQuestionState.answer = !newQuestionState.answer
+
+                        this.setState({question : newQuestionState},()=>{
+                            console.log(this.state)
+                        })
+                    }}
+                    checked={this.state.question.answer} title='The answer is true'/>}
 
                     {!this.state.editMode &&
                 <AnswerContainer style={styles.trueFalseSelectionContainerStyle}>
@@ -128,6 +177,11 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
                 {/*.navigation*/}
                 {/*.navigate('AddQuestionWidget')*/}
         {/*}}/>*/}
+
+            <EditableContainerUpdateNavBar
+                onUpdateSelected={ this.handleOnUpdateSelected}
+                onCancelSelected={ this.handleOnCancelSelected}
+            />
                 </ScrollView>
     }
 }

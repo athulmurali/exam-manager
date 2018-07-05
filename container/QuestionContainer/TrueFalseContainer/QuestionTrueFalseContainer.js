@@ -1,14 +1,11 @@
 import React from "react";
 import {CheckBox} from "react-native-elements";
-import {ScrollView, View} from "react-native";
+import {ScrollView, StyleSheet} from "react-native";
 import {questionEditBarStyle} from "../../../styles/essayQuestionWidget";
-import QuestionHeader from "../../QuestionHeader/QuestionHeader";
 import AnswerContainer from "../../../components/AnswerContainer";
-import QuestionParagraph from "../../../elements/QuestionParagraph";
 import QuestionNavigationBar from "../../QuestionNavigationBar";
 import QuestionEditBar from "../../QuestionEditBar";
 import {questionNavigationBarStyle} from "../../../styles/QuestionCommonStyle";
-import {StyleSheet} from 'react-native'
 import AddQuestionWidget from "../../widgetContainer/AddQuestionWidget";
 import EditableQuestionContainer from "../../EditableQuestionContainer";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {Text} from "react-native-elements";
+import {Button, Text} from "react-native-elements";
 import {View} from "react-native";
 import BlanksQuestionEditor from "./BlanksQuestionEditor";
 import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
@@ -58,17 +58,18 @@ export default  class  BlanksQuestionContainer extends React.Component{
 
 
         return <View>
-            <Text >Blanks Question Container</Text>
-            {
-                !!this.state.editMode &&
-                <EditableContainerUpdateNavBar
-                    editMode = {this.state.editMode}
-                    onUpdateSelected={this.handleUpdate}
-                    onCancelSeletected={this.handleCancel}
-                />
-            }
+            {/*<Text >Blanks Question Container</Text>*/}
+            {/*{*/}
+                {/*!!this.state.editMode &&*/}
+                {/*<EditableContainerUpdateNavBar*/}
+                    {/*editMode = {this.state.editMode}*/}
+                    {/*onUpdateSelected={this.handleUpdate}*/}
+                    {/*onCancelSeletected={this.handleCancel}*/}
+                {/*/>*/}
+            {/*}*/}
 
-            {!!this.state.editMode ?
+
+            {!!this.props.editMode ?
                <BlanksQuestionEditor onChangeText={this.handleOnChangeText}/> :
                 <BlanksParagraphView blanksQuestionText={this.state.newText} />
             }

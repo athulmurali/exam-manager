@@ -12,15 +12,15 @@ const optionsList=[
 
     },
     {
-        value: "FillInTheBlanks",
+        value: "FillInTheBlanksQuestionWidget",
         label: "Fill in the blanks"
     },
     {
-        value: "MCQ",
+        value: "MultipleChoiceQuestionWidget",
         label: "Multiple Choice"
     },
     {
-        value : "QuestionTrueFalseContainer",
+        value : "TrueOrFalseQuestionWidget",
         label : "True or False"
 
     }
@@ -82,12 +82,7 @@ export default  class AddQuestionWidget extends  React.Component{
                 redirectToComponent : selectedValue,
                 examId : this.props.navigation.examId
             },
-
-    )
-
-
-
-
+        )
     }
 
     handlePressOk(){
@@ -111,6 +106,8 @@ export default  class AddQuestionWidget extends  React.Component{
     componentWillUnmount(){
 
         console.log("AddQuestionWidget : unmounted")
+
+
 
 
     }

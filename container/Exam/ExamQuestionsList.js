@@ -9,7 +9,7 @@ import QuestionService from "../../services/QuestionService";
 const FILL = "FillInTheBlanksQuestionWidget"
 const ESSAY= "EssayQuestionWidget"
 const MCQ= "MCQ"
-const TF=  "QuestionTrueFalseContainer"
+const TF=  "TrueOrFalseQuestionWidget"
 
 
 const  questionService = QuestionService.instance;

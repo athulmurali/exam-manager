@@ -4,15 +4,15 @@ import AnswerContainer from "../../components/AnswerContainer";
 import EditableQuestionContainer from "../EditableQuestionContainer";
 import EditModeToggleNavBar from "../EditModeToggleNavBar";
 import BlanksQuestionContainer from "../BlanksQuestionContainer/BlanksQuestionContainer";
-import SubmitBar from "../SubmitBar";
 import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
+import QuestionService from "../../services/QuestionService";
 
 const styles = StyleSheet.create({
 
 });
 
 
-
+const questionService = QuestionService.instance;
 export default class FillInTheBlanksQuestionWidget extends React.Component{
     static navigationOptions={
         title : "Fill in the blanks"
@@ -20,6 +20,14 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
 
     constructor(props){
         super(props)
+
+
+        console.log("FillInTheBlanksWidget : nav props");
+        console.warn("In FillInTheBlanksWidget screen , " +
+            "exam ID "+ this.props.navigation.getParam("examId",-1000000 ))
+
+
+
         this.state={
             answer : true,
             editMode :true,
@@ -27,7 +35,8 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
             question : {
                 title : "",
                 points : "0",
-                description :""
+                description :"",
+                variables:"testone=1"
             }
         }
 
@@ -56,6 +65,7 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
         const questionId = this.props.navigation.getParam("questionId",  -1000);
         const examId =  this.props.navigation.getParam("examId", -10000);
 
+        console.log("On uodate select.....")
 
         if(  questionId > -1 )
             console.log("Essay question : exists")
@@ -63,8 +73,7 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
         else
         {
 
-            questionService.createEssayExamQuestion
-            (examId,  this.state.question)
+            questionService.createFillInTheBlanksExamQuestion(examId,  this.state.question)
                 .then(res=>{
                     console.log("Saved essay question successfully")
                     console.log(res);
@@ -138,13 +147,16 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
                 points                  =   {this.state.question.points}
                 description             =   {this.state.question.description}
             />
-            {!!this.state.editMode &&
+
             <AnswerContainer>
 
-                <BlanksQuestionContainer blanksQuestionText={"holasdf"}/>
+                <BlanksQuestionContainer
+                    blanksQuestionText={"holasdf"}
+                    editMode = {!!this.state.editMode}
+                />
 
             </AnswerContainer>
-            }
+
 
 
 
@@ -152,6 +164,11 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
             {/*<QuestionNavigationBar*/}
                 {/*style={questionNavigationBarStyle}/>*/}
 
+            {!!this.state.editMode  &&
+            <EditableContainerUpdateNavBar
+                onUpdateSelected={ this.handleOnUpdateSelected}
+                onCancelSelected={ this.handleOnCancelSelected}
+            />}
 
 
         </ScrollView>

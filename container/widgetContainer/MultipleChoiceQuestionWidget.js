@@ -1,15 +1,12 @@
 import React from "react";
-import {FormLabel, Icon} from "react-native-elements";
-import {Alert, ScrollView, StyleSheet, TextInput, View} from "react-native";
-import {questionEditBarStyle} from "../../styles/essayQuestionWidget";
-import QuestionNavigationBar from "../QuestionNavigationBar";
-import QuestionEditBar from "../QuestionEditBar";
-import {questionNavigationBarStyle} from "../../styles/QuestionCommonStyle";
-import AddQuestionWidget from "../widgetContainer/AddQuestionWidget";
+import {FormLabel} from "react-native-elements";
+import {Alert, ScrollView, StyleSheet, View} from "react-native";
 import EditableQuestionContainer from "../EditableQuestionContainer";
 import EditModeToggleNavBar from "../EditModeToggleNavBar";
 import EditableList from "../../components/EditableList";
 import AddChoice from "../../components/AddChoice";
+import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
+import QuestionService from "../../services/QuestionService";
 
 const styles = StyleSheet.create({
     checkBoxContainer : {
@@ -44,6 +41,7 @@ const styles = StyleSheet.create({
 });
 
 
+const questionService = QuestionService.instance;
 
 
 export default class MultipleChoiceQuestionWidget extends React.Component{
@@ -66,7 +64,9 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
             question : {
                 title : "",
                 points : "0",
-                description :""
+                description :"",
+                options: [],
+                correctOptionIndex: 0
             },
 
             elementsList: [
@@ -164,6 +164,42 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
     }
 
 
+
+    handleOnUpdateSelected=()=>{
+        const questionId = this.props.navigation.getParam("questionId",  -1000);
+        const examId =  this.props.navigation.getParam("examId", -10000);
+
+
+
+
+        console.log("On uodate select.....")
+
+        if(  questionId > -1 )
+            console.log("MCQ  question : exists")
+
+        else
+        {
+
+            questionService.createMultipleChoiceExamQuestion(examId,  this.state.question)
+                .then(res=>{
+                    console.log("Saved MCQ question successfully")
+                    console.log(res);
+
+                    Alert.alert("Saved successfully!")
+
+
+                    this.props.navigation
+                        .navigate('ExamQuestionsList',{
+                            examId : examId
+                        })
+                })
+
+        }
+
+
+
+    }
+
     render(){
 
         const questionText = "Longest paragraph in the world is not really easy to type. " +
@@ -212,6 +248,7 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
                     <FormLabel>Long Press to delete a option</FormLabel>
 
 
+
                 </View>
 
             }
@@ -226,6 +263,13 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
                         {/*.navigation*/}
                         {/*.navigate('AddQuestionWidget')*/}
                 {/*}}/>*/}
+
+
+
+            <EditableContainerUpdateNavBar
+                onUpdateSelected={ this.handleOnUpdateSelected}
+                onCancelSelected={ this.handleOnCancelSelected}
+            />
         </ScrollView>
     }
 }
