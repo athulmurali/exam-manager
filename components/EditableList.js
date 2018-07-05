@@ -45,11 +45,11 @@ export default class EditableList extends React.Component{
               this.props.elementsList.map(
                 (element,index)=>{
                     return <CheckBox
-                    title={  this.convertNumericIndexToAlphabetical(index) + ". " + element.title}
+                    title={  this.convertNumericIndexToAlphabetical(index) + ". " + element}
                     key = {index}
 
                     onPress={()=>{this.handleOnPress(index)}}
-                    checked={this.state.selectedIndex === index}
+                    checked={this.props.correctOptionIndex === index}
                     onLongPress ={()=>this.handleLongPress(index)}
 
             /> })

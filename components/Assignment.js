@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import {Alert, ScrollView, View} from 'react-native'
-import {FormLabel, Icon} from 'react-native-elements'
-import TextInput from "../elements/EssayTextInput";
+import {Alert, ScrollView, TextInput, View} from 'react-native'
+import {Button, FormLabel, Icon} from 'react-native-elements'
 import * as Clipboard from "react-native/Libraries/Components/Clipboard/Clipboard";
 import EditModeToggleNavBar from "../container/EditModeToggleNavBar";
 import EditableQuestionContainer from "../container/EditableQuestionContainer";
 import AssignmentService from "../services/AssignmentService";
 import EditableContainerUpdateNavBar from "../container/EditableContainerUpdateNavBar";
+import EssayTextInput from "../elements/EssayTextInput";
 
 const assignmentService = AssignmentService.instance
 export default  class Assignment extends Component {
@@ -14,11 +14,10 @@ export default  class Assignment extends Component {
     static navigationOptions = {title: 'Assignment'}
 
 
-
-
     constructor(props) {
         super(props)
         this.state = {
+            linkText:"Text from assignment",
             widgets: [],
             courseId: 1,
             moduleId: 1,
@@ -169,7 +168,7 @@ export default  class Assignment extends Component {
     readFromClipboard = async () => {
         const clipboardContent = await Clipboard.getString();
         console.log("pasted!");
-        this.setState({clipboardContent});
+        this.setState({linkText : clipboardContent});
         console.log(clipboardContent + ":")
     };
 
@@ -217,12 +216,35 @@ export default  class Assignment extends Component {
 
                 />
 
+                <FormLabel>Upload File</FormLabel>
+                <Button
+                    title={"Choose file"}
+                    backgroundColor ={"grey"}
+                    borderRadius ={10}
+                > </Button>
+
+
+
+                <FormLabel>Essay Answer</FormLabel>
+                <View style={{flexDirection: "row",
+                    justifyContent: 'space-between', alignItems: 'center',
+                    padding:15}}>
+
+                    <TextInput
+                    placeholder = {"Please write your life story here. " +
+                    "As you type the width and height will increase"}
+                    multiline={true}
+
+                    />
+
+                </View>
+
 
 
                 <FormLabel>Link</FormLabel>
 
 
-                <View style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center'}}>
+                <View style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center',padding:10}}>
                     <Icon
                         reverse
                         name='ios-link'
@@ -230,9 +252,10 @@ export default  class Assignment extends Component {
                         color='#517fa4'
                     />
 
-                    <TextInput
+                    <EssayTextInput
 
-                        onChangeText={(text) => this.setState({input: this.state.clipboardContent})}
+                        text={this.state.linkText}
+                        onChangeText={(text) => this.setState({linkText: text})}
                         placeholder="Input Here"
                     />
 

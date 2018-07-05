@@ -1,6 +1,6 @@
 import Exam from "../../elements/Exam";
 import React from "react";
-import {Alert, View} from "react-native";
+import {Alert, ScrollView, View} from "react-native";
 import {Button} from "react-native";
 import {Text} from "react-native-elements";
 import EssayQuestionWidget from "../widgetContainer/EssayQuestionWidget";
@@ -168,7 +168,7 @@ export default class ExamQuestionsList extends React.Component{
     render(){
         console.log(this.props.navigation.getParam("examId"), -1)
 
-        return<View>
+        return<ScrollView>
             <Text h4>Help</Text>
 
             <Text >Long Press to Delete</Text>
@@ -182,7 +182,7 @@ export default class ExamQuestionsList extends React.Component{
             />
 
 
-        </View>
+        </ScrollView>
 
 
     }

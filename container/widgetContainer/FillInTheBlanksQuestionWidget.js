@@ -49,11 +49,13 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
         console.log("FillInTheBlanksQuestionWidget : Unmounted");
     }
 
-
     handleQuestionHeaderChange=(data)=>{
         console.log("Question :   onChangeQuestionText "  );
+        const newQuestionData =  {...this.state.question,...data}
+
+        console.log("Question data after header change : ")
         this.setState({
-            question : data
+            question : newQuestionData
         },()=>console.log(this.state))
 
 

@@ -1,10 +1,8 @@
 import React from "react";
-import {View} from "react-native";
+import {StyleSheet, View} from "react-native";
 import {Text} from "react-native-elements";
 import FormLabel from "react-native-elements/src/form/FormLabel";
 import Badge from "react-native-elements/src/badge/badge";
-
-import {StyleSheet} from 'react-native'
 
 const styles= StyleSheet.create({
     questionHeaderViewStyle:{flexDirection: "row", justifyContent: 'space-between',
@@ -18,8 +16,7 @@ class QuestionHeader extends  React.Component{
     }
     constructor(props){
         super(props)
-        const questionIndex = 1
-            "The question is really random. Please select an answer and you will be given marks on random"
+
 
     }
 

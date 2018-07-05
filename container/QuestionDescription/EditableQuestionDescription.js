@@ -1,6 +1,7 @@
 import {FormInput, FormLabel, FormValidationMessage} from "react-native-elements";
 import React from "react";
 import {View} from "react-native";
+import {MAX_TITLE_LENGTH} from "../QuestionHeader/EditableHeader";
 
 const EditableQuestionDescription=(props)=>{
     return <View>
@@ -17,9 +18,12 @@ const EditableQuestionDescription=(props)=>{
         // this.setState({description: text})i
     }
 }/>
-    <FormValidationMessage>
+
+        {props.descriptionText.length < 1 &&
+
+        <FormValidationMessage>
         Description is required
-    </FormValidationMessage>
+    </FormValidationMessage> }
     </View>
 
 

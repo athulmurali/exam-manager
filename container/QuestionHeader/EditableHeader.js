@@ -44,9 +44,16 @@ const EditableHeader = (props) => {
                       Alert.alert('Do you want to edit this ?')}
             />
 
-            <FormValidationMessage>
-                Title is required.( max {MAX_TITLE_LENGTH} chars)
-            </FormValidationMessage>
+        { props.titleText.length >= MAX_TITLE_LENGTH || props.titleText.length < 1
+
+        &&
+
+        <FormValidationMessage>
+            Title is required.( max {MAX_TITLE_LENGTH} chars)
+        </FormValidationMessage>
+
+        }
+
 
 
             <FormLabel>Points</FormLabel>

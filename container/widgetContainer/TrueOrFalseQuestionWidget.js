@@ -55,11 +55,13 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
         })
     }
 
-
     handleQuestionHeaderChange=(data)=>{
         console.log("Question :   onChangeQuestionText "  );
+        const newQuestionData =  {...this.state.question,...data}
+
+        console.log("Question data after header change : ")
         this.setState({
-            question : data
+            question : newQuestionData
         },()=>console.log(this.state))
 
 

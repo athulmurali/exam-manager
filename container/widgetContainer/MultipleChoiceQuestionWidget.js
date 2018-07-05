@@ -52,14 +52,9 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            answer : true,
             editMode :true,
-
-
             correctAnswerIndex : 1,
-            answersList:[],
             tempNewChoiceText : "",
-
 
             question : {
                 title : "",
@@ -67,13 +62,7 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
                 description :"",
                 options: [],
                 correctOptionIndex: 0
-            },
-
-            elementsList: [
-            ]
-
-
-
+            }
 
         }
 
@@ -93,7 +82,7 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
     }
 
     handleCorrectAnswerSelection=(answerIndex)=>{
-        console.log(this.state.elementsList)
+        console.log(this.state.question.options)
         this.setCorrectAnswer(answerIndex)
     }
 
@@ -126,38 +115,60 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
     }
 
     setAddNewChoice=()=>{
+
+        const newOptions = this.state.question.options.concat(this.state.tempNewChoiceText )
+        console.log("latest options list : ")
+        console.log(newOptions)
+        const newQuestionState = {...this.state.question}
+        newQuestionState.options = newOptions;
+
         this.setState({
-            elementsList : this.state.elementsList.concat({title : this.state.tempNewChoiceText }),
+            question : newQuestionState,
             tempNewChoiceText : ""
-        },()=>{console.log(this.state.elementsList)})
+        },()=>{console.log(this.state.question)})
     }
     setCorrectAnswer=(answerIndex)=>{
         console.log("AnswerINdex : " +answerIndex)
 
-        this.setState(
-            {
-                correctAnswerIndex :  answerIndex
 
-            }, ()=>console.log(this.state) )
+        const newData ={correctOptionIndex : answerIndex}
+        console.log("Question :   onChangeQuestionText "  );
+        const newQuestionData =  {...this.state.question,...newData}
+
+        console.log("Question data after header change : ")
+        this.setState({
+            question : newQuestionData
+        },()=>console.log(this.state))
+
     }
 
 
     deleteByIndex=(deleteIndex)=>{
-        let newList = this.state.elementsList.filter((element, index)=>{
+        let newList = this.state.question.options.filter((element, index)=>{
             console.log( index + " :Index to be deleted :" + deleteIndex == index)
             return deleteIndex != index
         })
         console.log("List after deletion: ")
         console.log(newList)
+
+
+        const newQuestionState = {...this.state.question}
+        newQuestionState.options = newList;
+
         this.setState({
-            elementsList : newList
-        })
+            question : newQuestionState,
+            tempNewChoiceText : ""
+        },()=>{console.log(this.state.question)})
+
     }
 
     handleQuestionHeaderChange=(data)=>{
         console.log("Question :   onChangeQuestionText "  );
+        const newQuestionData =  {...this.state.question,...data}
+
+        console.log("Question data after header change : ")
         this.setState({
-            question : data
+            question : newQuestionData
         },()=>console.log(this.state))
 
 
@@ -202,10 +213,7 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
 
     render(){
 
-        const questionText = "Longest paragraph in the world is not really easy to type. " +
-            "That's why I keep the descriptions short"
-        const questionIndex = 1
-        const questionPoints = 100
+
 
         console.log("QuestionMultipleCHocie : rendered")
 
@@ -240,7 +248,8 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
                     <FormLabel>Select the correct answer</FormLabel>
 
                     <EditableList
-                    elementsList ={this.state.elementsList}
+                    elementsList ={this.state.question.options}
+                    correctOptionIndex ={this.state.question.correctOptionIndex}
 
                     onSelectIndex={this.handleCorrectAnswerSelection}
                     onDelete={this.handleDelete}
