@@ -4,6 +4,28 @@ import {ListItem, Text} from 'react-native-elements'
 import AddQuestionWidget from "../container/widgetContainer/AddQuestionWidget";
 
 
+const getIconNameByQuestionType=(type)=>{
+
+    switch (type){
+        case "BLANKS":
+            return "code"
+
+        case "ESSAY": return "subject"
+
+
+        case "MCQ": return "list"
+
+
+        case "TF": return "check"
+
+
+        default:
+            // this.props.navigation.navigate(this.)
+            return "";
+    }
+
+}
+
 export default class Exam extends Component {
     constructor(props){
         super(props)
@@ -28,8 +50,8 @@ export default class Exam extends Component {
         {this.props.examsList.map( (exam, index) => (
           <ListItem
             key={index}
-            leftIcon={{name: exam.icon}}
-            subtitle={exam.subtitle}
+            leftIcon={{name: getIconNameByQuestionType(exam.type)}}
+            subtitle={exam.type}
             title={exam.title}
             onLongPress={()=>this.handleLongPress(exam.id) }
             onPress={()=>this.handlePress(exam,exam.id)}

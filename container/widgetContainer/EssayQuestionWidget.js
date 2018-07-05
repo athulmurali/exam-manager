@@ -1,41 +1,61 @@
 import React from "react";
-import {Alert, ScrollView, View} from "react-native";
-import QuestionHeader from "../QuestionHeader/QuestionHeader";
-import QuestionParagraph from "../../elements/QuestionParagraph";
+import {Alert, ScrollView} from "react-native";
 import AnswerContainer from "../../components/AnswerContainer";
-import QuestionNavigationBar from "../QuestionNavigationBar";
-import QuestionEditBar from "../QuestionEditBar";
-import {questionEditBarStyle} from "../../styles/essayQuestionWidget";
-import TextInput from '../../elements/EssayTextInput'
+import EssayTextInput from '../../elements/EssayTextInput'
 import EditableQuestionContainer from "../EditableQuestionContainer";
 import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
 import EditModeToggleNavBar from "../EditModeToggleNavBar";
+import FormLabel from "react-native-elements/src/form/FormLabel";
+import QuestionService from "../../services/QuestionService";
 
+const questionService = QuestionService.instance
 class  EssayQuestionWidget extends React.Component{
     static  navigationOptions ={
         title : "EssayQuestion",
     }
     constructor(props){
+
+
         super(props)
-        this.state={
-            editMode :  true
+
+            console.log("EssayQuestion : nav props");
+            console.warn("In essay screen , exam ID "+ this.props.navigation.getParam("examId",-1000000 ))
+
+
+            this.state={
+            editMode :  true,
+
+            question : {
+                title : "",
+                points : "0",
+                description :""
+            }
         }
     }
 
 
 
+    handleQuestionHeaderChange=(data)=>{
+        console.log("Question :   onChangeQuestionText "  );
+        this.setState({
+            question : data
+        },()=>console.log(this.state))
+
+
+    }
 
     handleOnUpdateSelected=()=>{
 
         Alert.alert("Saved successfully!")
+
         console.log("EditableQuestionContainer : faking save");
 
+        questionService.createQuestion()
 
-        this.props.navigation
-            .navigate('ExamQuestionsList')
+        //
+        // this.props.navigation
+        //     .navigate('ExamQuestionsList')
     }
-
-
 
     handleOnCancelSelected=()=>{
 
@@ -56,7 +76,6 @@ class  EssayQuestionWidget extends React.Component{
 
     }
 
-
     handleToggleEditMode=(editMode)=>{
         this.setState({
             editMode : editMode
@@ -76,15 +95,28 @@ class  EssayQuestionWidget extends React.Component{
             />
 
 
-            <EditableQuestionContainer editMode={this.state.editMode}/>
+            <EditableQuestionContainer
+
+                editMode                =   {this.state.editMode}
+
+
+                onChangeQuestionText    =   {this.handleQuestionHeaderChange}
+
+                title                   =   {this.state.question.title}
+                points                  =   {this.state.question.points}
+                description             =   {this.state.question.description}
+            />
+
+            <FormLabel> Submit your answer below</FormLabel>
 
             <AnswerContainer style={{padding :20}}>
-                <TextInput/>
-
+                <EssayTextInput
+                onChangeText={()=>console.log("hiiiii")} />
             </AnswerContainer>
 
 
-            {!!this.state.editMode  && <EditableContainerUpdateNavBar
+            {!!this.state.editMode  &&
+            <EditableContainerUpdateNavBar
                 onUpdateSelected={ this.handleOnUpdateSelected}
                 onCancelSelected={ this.handleOnCancelSelected}
             />}
@@ -92,10 +124,10 @@ class  EssayQuestionWidget extends React.Component{
                 {/*style ={questionEditBarStyle}/>*/}
 
 
-            <QuestionNavigationBar
-                style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center'}}
-                onUp
-            />
+            {/*<QuestionNavigationBar*/}
+                {/*style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center'}}*/}
+                {/*onUp*/}
+            {/*/>*/}
 
         </ScrollView>
     }

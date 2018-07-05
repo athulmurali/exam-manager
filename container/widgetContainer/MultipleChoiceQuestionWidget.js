@@ -63,23 +63,17 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
             tempNewChoiceText : "",
 
 
+            question : {
+                title : "",
+                points : "0",
+                description :""
+            },
+
             elementsList: [
-                {
-                    id : 1,
-                    title :"title1"
-                },
-
-                {
-                    id : 2,
-                    title :"title2"
-                },
-
-                {
-                    id : 3,
-                    title :"title3"
-                }
-
             ]
+
+
+
 
         }
 
@@ -99,6 +93,7 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
     }
 
     handleCorrectAnswerSelection=(answerIndex)=>{
+        console.log(this.state.elementsList)
         this.setCorrectAnswer(answerIndex)
     }
 
@@ -113,14 +108,14 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
 
     handleOnPressAdd=()=>{
 
-        console.log("MCQ : handleOnPressAdd");
+        console.log("MCQ : handleOnPressAdd ------------------------");
         if(this.state.tempNewChoiceText !="")  this.setAddNewChoice()
     }
     handleDelete=(index)=>{
         console.log("Choice List Long Press...."+index)
         Alert.alert(
             'Confirm Delete',
-            'Delete this exam?',
+            'Delete this choice?',
             [
                 {text: 'Cancel'
                     , style: 'cancel'},
@@ -132,16 +127,18 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
 
     setAddNewChoice=()=>{
         this.setState({
-            elementsList : this.state.elementsList.concat({title : this.state.tempNewChoiceText })
+            elementsList : this.state.elementsList.concat({title : this.state.tempNewChoiceText }),
+            tempNewChoiceText : ""
         },()=>{console.log(this.state.elementsList)})
     }
     setCorrectAnswer=(answerIndex)=>{
+        console.log("AnswerINdex : " +answerIndex)
+
         this.setState(
             {
                 correctAnswerIndex :  answerIndex
 
-            }
-        )
+            }, ()=>console.log(this.state) )
     }
 
 
@@ -157,6 +154,14 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
         })
     }
 
+    handleQuestionHeaderChange=(data)=>{
+        console.log("Question :   onChangeQuestionText "  );
+        this.setState({
+            question : data
+        },()=>console.log(this.state))
+
+
+    }
 
 
     render(){
@@ -166,7 +171,7 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
         const questionIndex = 1
         const questionPoints = 100
 
-        console.log("QuestionTrueFalseContainer : rendered")
+        console.log("QuestionMultipleCHocie : rendered")
 
         return <ScrollView style ={{padding : 11}}>
 
@@ -176,10 +181,17 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
                 initialSwitchState={this.state.editMode}
                 onToggle={this.handleToggleEditMode}
             />
-
             <EditableQuestionContainer
-                editMode = {this.state.editMode}/>
 
+                editMode                =   {this.state.editMode}
+
+
+                onChangeQuestionText    =   {this.handleQuestionHeaderChange}
+
+                title                   =   {this.state.question.title}
+                points                  =   {this.state.question.points}
+                description             =   {this.state.question.description}
+            />
 
 
             {
@@ -205,15 +217,15 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
             }
 
 
-            <QuestionNavigationBar
-                style={questionNavigationBarStyle}/>
-            <QuestionEditBar
-                style ={questionEditBarStyle}
-                onSelectAddQuestion ={()=>{
-                    this.props
-                        .navigation
-                        .navigate('AddQuestionWidget')
-                }}/>
+            {/*<QuestionNavigationBar*/}
+                {/*style={questionNavigationBarStyle}/>*/}
+            {/*<QuestionEditBar*/}
+                {/*style ={questionEditBarStyle}*/}
+                {/*onSelectAddQuestion ={()=>{*/}
+                    {/*this.props*/}
+                        {/*.navigation*/}
+                        {/*.navigate('AddQuestionWidget')*/}
+                {/*}}/>*/}
         </ScrollView>
     }
 }

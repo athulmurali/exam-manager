@@ -18,8 +18,8 @@ export const MAX_POINTS_LENGTH = 5
 
 
 const EditableHeader = (props) => {
-    console.log("props in Editable header " )
-    console.log(props)
+    // console.log("props in Editable header " )
+    // console.log(props)
 
     return<View style={props.containerStyle}>
             <FormLabel>Title</FormLabel>

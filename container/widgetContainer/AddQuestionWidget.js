@@ -77,19 +77,27 @@ export default  class AddQuestionWidget extends  React.Component{
     handleTypeSelection(selectedValue,selectedIndex){
         console.log("AddQuestionWidget :hanlde Type Select = " + selectedValue)
 
-        this.setState((
+        this.setState(
             {
-                redirectToComponent : selectedValue
-            }
-        ))
+                redirectToComponent : selectedValue,
+                examId : this.props.navigation.examId
+            },
+
+    )
+
+
 
 
     }
 
     handlePressOk(){
         console.log("AddQuestionWidget : handlePressOk")
+        console.warn("sending to next from addQe" + this.props.navigation.getParam("examId", -10000))
+
         this.props.navigation
-            .navigate(this.state.redirectToComponent)
+            .navigate(this.state.redirectToComponent,{
+                examId : this.props.navigation.getParam("examId",-1)
+            })
 
     }
 

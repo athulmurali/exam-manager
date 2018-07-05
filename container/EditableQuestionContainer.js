@@ -66,7 +66,7 @@ export default  class EditableQuestionContainer extends React.Component{
     handleTitleTextChange=(text)=>{
         console.log("asdsdsds")
         this.setState({title : text},  this.returnQuestionHeader)
-        console.log(this.state)
+        // console.log(this.state)
 
 
     }

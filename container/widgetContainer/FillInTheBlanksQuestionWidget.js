@@ -26,7 +26,13 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
         super(props)
         this.state={
             answer : true,
-            editMode :true
+            editMode :true,
+
+            question : {
+                title : "",
+                points : "0",
+                description :""
+            }
         }
 
     }
@@ -36,6 +42,16 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
     }
     componentWillUnmount(){
         console.log("FillInTheBlanksQuestionWidget : Unmounted");
+    }
+
+
+    handleQuestionHeaderChange=(data)=>{
+        console.log("Question :   onChangeQuestionText "  );
+        this.setState({
+            question : data
+        },()=>console.log(this.state))
+
+
     }
 
     handleToggleEditMode=(editMode)=>{
@@ -59,9 +75,18 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
                 onToggle={this.handleToggleEditMode}
             />
 
-            <EditableQuestionContainer
-                editMode = {this.state.editMode}/>
 
+            <EditableQuestionContainer
+
+                editMode                =   {this.state.editMode}
+
+
+                onChangeQuestionText    =   {this.handleQuestionHeaderChange}
+
+                title                   =   {this.state.question.title}
+                points                  =   {this.state.question.points}
+                description             =   {this.state.question.description}
+            />
             {!!this.state.editMode &&
             <AnswerContainer>
 

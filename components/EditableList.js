@@ -39,7 +39,6 @@ export default class EditableList extends React.Component{
     convertNumericIndexToAlphabetical=(index)=>(String.fromCharCode( ASCII_a + index))
 
     render(){
-        Alert.alert("Correct AnswerIndex : " + this.state.selectedIndex)
 
         return <View>
         {

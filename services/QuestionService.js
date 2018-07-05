@@ -36,7 +36,7 @@ export default class QuestionService {
         ('QID', questionId), {
             method: 'delete'
         }).then(function (response) {
-            return response.json();
+            return response;
         })
     }
 

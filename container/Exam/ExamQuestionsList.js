@@ -48,27 +48,7 @@ const questions = [
 
 
 
-const getIconNameByQuestionType=(question)=>{
 
-   switch (question.type){
-       case "BLANKS":
-           return "code"
-
-       case "ESSAY": return "subject"
-
-
-       case "MCQ": return "list"
-
-
-       case "TF": return "check"
-
-
-       default:
-           // this.props.navigation.navigate(this.)
-           return "";
-   }
-
-}
 
 export default class ExamQuestionsList extends React.Component{
     static navigationOptions={
@@ -104,7 +84,7 @@ export default class ExamQuestionsList extends React.Component{
 
     componentDidMount(){
         console.log("Exam Questions List : Mounted ");
-        this.fetchAllQuestionsByExamId(1);
+        this.fetchAllQuestionsByExamId();
     }
 
     constructor(props)
@@ -122,7 +102,9 @@ export default class ExamQuestionsList extends React.Component{
 
 
     fetchAllQuestionsByExamId=()=>{
-        questionService.findQuestionsByExamId(this.state.examId).then(res=>{
+
+        questionService.findQuestionsByExamId(1).then(res=>{
+
             console.log("ExamQuestionsList : Fetching  Questions for examId : " + this.state.examId);
             this.setState({
                 questionsList :res
@@ -131,26 +113,34 @@ export default class ExamQuestionsList extends React.Component{
     }
 
     redirectToEditAssignment=()=> {
+    console.log("AddQuestionWidget : ");
+    console.log(this.state.examId);
 
-        this.props.navigation.navigate("AddQuestionWidget");
+        this.props.navigation.navigate("AddQuestionWidget",{
+            examId :this.state.examId
+        })
     }
 
 
 
     deleteById=(id)=>{
-        console.log("asdfdf")
-    let newList = this.state.questionsList.filter((question)=>{
-        console.log( question.id != id)
-        return question.id != id
-    })
-    console.log(newList)
-    this.setState({
-        questionsList : newList
-    })
+        console.log("ExamnQuestionList:  deleting id : "+ id)
+
+
+        questionService.deleteQuestion(id).then((res)=>{
+            let newList = this.state.questionsList.filter((question)=>{
+                console.log( question.id != id)
+                return question.id != id
+            })
+            console.log("newList...........")
+            console.log(newList)
+            this.setState({
+                questionsList : newList
+            })
+
+        })
+
 }
-
-
-
 
     handlePress=(question,id)=>{
         console.log("Exam Questions List Press....")

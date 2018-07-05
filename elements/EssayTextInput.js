@@ -1,20 +1,5 @@
-import React, { Component } from 'react';
-import { AppRegistry, View, TextInput } from 'react-native';
-import {essayTextBox} from "../styles/essayQuestionWidget";
-
-class UselessTextInput extends Component {
-    render() {
-        return (
-            <TextInput
-                onChangeText={this.props.onChangeText}
-                value={this.props.value}
-                multiline
-                style={essayTextBox
-                }
-            />
-        );
-    }
-}
+import React, {Component} from 'react';
+import {TextInput} from 'react-native';
 
 export default class EssayTextInput extends Component {
     constructor(props) {
@@ -37,7 +22,7 @@ export default class EssayTextInput extends Component {
     // color.
     render() {
         return (
-                <UselessTextInput
+                <TextInput
                     multiline = {true}
                     onChangeText= {this.handleChangeText}
                     value={this.state.text}
