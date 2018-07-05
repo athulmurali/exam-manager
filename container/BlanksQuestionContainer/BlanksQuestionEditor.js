@@ -1,7 +1,6 @@
 import {View} from "react-native";
 import React from "react";
 import EssayTextInput from '../../elements/EssayTextInput'
-import {Text} from "react-native-elements";
 
 export default  class BlanksQuestionEditor extends React.Component{
     constructor(props)
@@ -23,8 +22,7 @@ export default  class BlanksQuestionEditor extends React.Component{
     render(){
         // console.log(this.props)
 
-        return <View>
-                    <Text >Enter the text below for fill in the banks</Text>
-                    <EssayTextInput onChangeText={this.handleOnChangeText}/>
+        return <View style={{padding: 15}}>
+                    <EssayTextInput text={this.props.text} onChangeText={this.handleOnChangeText}/>
                 </View>}
 }

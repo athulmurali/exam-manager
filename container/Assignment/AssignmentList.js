@@ -139,7 +139,7 @@ export default class AssignmentList extends React.Component{
             <Exam onPress={this.handlePress} onLongPress={this.handleLongPress}
                   examsList ={this.state.assignmentList} />
 
-            <Button title ="Add question"
+            <Button title ="Add Assignment"
                     onPress={()=>this.redirectToEditAssignment()}
             />
 

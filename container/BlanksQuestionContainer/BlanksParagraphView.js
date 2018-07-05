@@ -94,16 +94,19 @@ export default  class BlanksParagraphView extends  React.Component{
             return (word.type == "word") ?
                  <Text key ={index} h4> {word.value}</Text> :
 
-                <TextInput key ={index} style={fillInTheBlankBox}> {word.value}</TextInput>
+                <TextInput key ={index}
+                           style={fillInTheBlankBox}
+                           placeholder='ANSWER'>
+
+                </TextInput>
         })
 
     }
     render(){
         const givenText = this.props.blanksQuestionText.trim()
         return <View  style={{padding: 15}}>
-                {/*<Text h4>Blanks Container </Text>*/}
                 <View  style={{flexDirection: 'row', flexWrap: 'wrap', padding: 15}}>
-                    {this.returnTextAndBlank({givenText})}
+                    {this.returnTextAndBlank(givenText)}
                 </View>
 
 

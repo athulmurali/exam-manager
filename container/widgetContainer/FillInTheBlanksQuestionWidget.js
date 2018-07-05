@@ -6,6 +6,7 @@ import EditModeToggleNavBar from "../EditModeToggleNavBar";
 import BlanksQuestionContainer from "../BlanksQuestionContainer/BlanksQuestionContainer";
 import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
 import QuestionService from "../../services/QuestionService";
+import FormLabel from "react-native-elements/src/form/FormLabel";
 
 const styles = StyleSheet.create({
 
@@ -151,9 +152,11 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
             />
 
             <AnswerContainer>
+                <FormLabel >Enter the text below for fill in the banks</FormLabel>
+
 
                 <BlanksQuestionContainer
-                    blanksQuestionText={"holasdf"}
+                    blanksQuestionText={"Test input for blanks"}
                     editMode = {!!this.state.editMode}
                 />
 

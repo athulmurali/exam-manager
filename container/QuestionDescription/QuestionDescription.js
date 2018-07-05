@@ -6,9 +6,11 @@ import React from "react";
 const QuestionDescription=(props)=>{
     return <View>
                 <FormLabel>Description</FormLabel>
-                <Text multiline>
-                    {props.descriptionText}
-                </Text>
+                <View style={{padding: 15}}>
+                    <Text multiline>
+                        {props.descriptionText}
+                    </Text>
+                 </View>
             </View>
 
 

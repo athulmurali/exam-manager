@@ -55,7 +55,7 @@ export default  class EditableContainerUpdateNavBar extends Component{
                 onPress={this.handleOnPressCancel}
             />
             <Button
-                title="Update"
+                title={"Submit"}
                 disabled={false}
                 onPress={this.handleOnPressUpdate}
 

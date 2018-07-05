@@ -56,21 +56,15 @@ export default  class  BlanksQuestionContainer extends React.Component{
 
     render(){
 
+        console.log("blanks props.......")
+        console.log(this.props)
 
-        return <View>
-            {/*<Text >Blanks Question Container</Text>*/}
-            {/*{*/}
-                {/*!!this.state.editMode &&*/}
-                {/*<EditableContainerUpdateNavBar*/}
-                    {/*editMode = {this.state.editMode}*/}
-                    {/*onUpdateSelected={this.handleUpdate}*/}
-                    {/*onCancelSeletected={this.handleCancel}*/}
-                {/*/>*/}
-            {/*}*/}
+        return  <View  style={{padding: 15}}>
+
 
 
             {!!this.props.editMode ?
-               <BlanksQuestionEditor onChangeText={this.handleOnChangeText}/> :
+               <BlanksQuestionEditor text={this.state.newText} onChangeText={this.handleOnChangeText}/> :
                 <BlanksParagraphView blanksQuestionText={this.state.newText} />
             }
 
