@@ -148,7 +148,7 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
                         title='True'
                         checkedIcon='dot-circle-o'
                         uncheckedIcon='circle-o'
-                        checked={!!this.state.trueSelected}
+                        checked={!!this.state.question.answer}
                         containerStyle = {styles.checkBoxContainer}
                         onPress={()=>this.setState({trueSelected : true})}
                     />
@@ -157,7 +157,7 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
                         title='False'
                         checkedIcon='dot-circle-o'
                         uncheckedIcon='circle-o'
-                        checked={!this.state.trueSelected}
+                        checked={!this.state.question.answer}
                         containerStyle = {styles.checkBoxContainer}
                         onPress={()=>this.setState({
                             trueSelected : false
