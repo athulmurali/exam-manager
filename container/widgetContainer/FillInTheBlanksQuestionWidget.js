@@ -1,15 +1,11 @@
 import React from "react";
-import {ScrollView, StyleSheet} from "react-native";
-import {questionEditBarStyle} from "../../styles/essayQuestionWidget";
+import {Alert, ScrollView, StyleSheet} from "react-native";
 import AnswerContainer from "../../components/AnswerContainer";
-import QuestionNavigationBar from "../QuestionNavigationBar";
-import QuestionEditBar from "../QuestionEditBar";
-import {questionNavigationBarStyle} from "../../styles/QuestionCommonStyle";
-import AddQuestionWidget from "../widgetContainer/AddQuestionWidget";
 import EditableQuestionContainer from "../EditableQuestionContainer";
 import EditModeToggleNavBar from "../EditModeToggleNavBar";
 import BlanksQuestionContainer from "../BlanksQuestionContainer/BlanksQuestionContainer";
 import SubmitBar from "../SubmitBar";
+import EditableContainerUpdateNavBar from "../EditableContainerUpdateNavBar";
 
 const styles = StyleSheet.create({
 
@@ -54,6 +50,61 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
 
     }
 
+
+
+    handleOnUpdateSelected=()=>{
+        const questionId = this.props.navigation.getParam("questionId",  -1000);
+        const examId =  this.props.navigation.getParam("examId", -10000);
+
+
+        if(  questionId > -1 )
+            console.log("Essay question : exists")
+
+        else
+        {
+
+            questionService.createEssayExamQuestion
+            (examId,  this.state.question)
+                .then(res=>{
+                    console.log("Saved essay question successfully")
+                    console.log(res);
+
+                    Alert.alert("Saved successfully!")
+
+
+                    this.props.navigation
+                        .navigate('ExamQuestionsList',{
+                            examId : examId
+                        })
+                })
+
+        }
+
+
+
+    }
+
+    handleOnCancelSelected=()=>{
+
+        const examId =  this.props.navigation.getParam("examId", -10000);
+
+        Alert.alert(
+            'Confirm Exit',
+            'Exit to Exam Questions List without saving changes?',
+            [
+                {text: 'Cancel'
+                    , style: 'cancel'},
+                {text: 'OK',
+                    onPress:() => this.props.navigation.navigate('ExamQuestionsList',
+                        {
+                            examId : examId
+                        })}
+            ],
+            { cancelable: false }
+        )
+
+    }
+
     handleToggleEditMode=(editMode)=>{
         this.setState({
             editMode : editMode
@@ -92,9 +143,10 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
 
                 <BlanksQuestionContainer blanksQuestionText={"holasdf"}/>
 
-                <SubmitBar/>
             </AnswerContainer>
             }
+
+
 
 
             {/*<QuestionNavigationBar*/}
@@ -102,13 +154,6 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
 
 
 
-            {/*<QuestionEditBar*/}
-                {/*style ={questionEditBarStyle}*/}
-                {/*onSelectAddQuestion ={()=>{*/}
-                    {/*this.props*/}
-                        {/*.navigation*/}
-                        {/*.navigate('AddQuestionWidget')*/}
-                {/*}}/>*/}
         </ScrollView>
     }
 }

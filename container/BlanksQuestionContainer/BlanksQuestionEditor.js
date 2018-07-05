@@ -24,7 +24,7 @@ export default  class BlanksQuestionEditor extends React.Component{
         // console.log(this.props)
 
         return <View>
-                    <Text>EssayTextInputForQuestionEditor</Text>
+                    <Text >Enter the text below for fill in the banks</Text>
                     <EssayTextInput onChangeText={this.handleOnChangeText}/>
                 </View>}
 }

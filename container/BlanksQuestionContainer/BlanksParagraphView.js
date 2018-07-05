@@ -85,7 +85,7 @@ export default  class BlanksParagraphView extends  React.Component{
 
     }
     componentDidMount(){
-        console.log("Blanks container")
+        console.log("Blanks Paragraph view : mounted")
     }
 
     returnTextAndBlank=(givenText)=>{
@@ -101,8 +101,8 @@ export default  class BlanksParagraphView extends  React.Component{
     render(){
         const givenText = this.props.blanksQuestionText.trim()
         return <View  style={{padding: 15}}>
-                <Text h4>Blanks Container </Text>
-                <View  style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                {/*<Text h4>Blanks Container </Text>*/}
+                <View  style={{flexDirection: 'row', flexWrap: 'wrap', padding: 15}}>
                     {this.returnTextAndBlank(givenText)}
                 </View>
 
