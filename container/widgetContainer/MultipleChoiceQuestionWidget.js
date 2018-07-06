@@ -71,7 +71,13 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
     }
 
     componentDidMount(){
-        console.log("QuestionTrueFalseContainer : Mounted");
+        console.log("MultipleChoiceQuestionWidget : Mounted");
+
+        const selectedQuestion = this.props.navigation.getParam("question", false);
+        if (selectedQuestion)
+        {
+            this.setState({question : {...selectedQuestion} })
+        }
     }
     componentWillUnmount(){
         console.log("QuestionTrueFalseContainer : Unmounted");
@@ -183,12 +189,38 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
         const examId =  this.props.navigation.getParam("examId", -10000);
 
 
+        const question = this.state.question
+
+        if(!!question["id"])
+        {
+            console.log("Essay question : exists")
+            console.log(question)
 
 
-        console.log("On uodate select.....")
+            questionService.deleteQuestion(question.id).
+            then(res=>{
+                console.log("question deleted by ID : " + question.id)
 
-        if(  questionId > -1 )
-            console.log("MCQ  question : exists")
+
+                delete question.id
+                questionService.createMultipleChoiceExamQuestion(examId,question).then(res=>{
+                    console.log("question created! ")
+                    this.setState(
+                        {
+                            question: res
+                        }
+                    )
+                    Alert.alert(" Updated question! ")
+                    this.props.navigation
+                        .navigate('ExamQuestionsList',{
+                            examId : examId
+                        })
+                })
+            })
+
+
+        }
+
 
         else
         {
@@ -213,6 +245,26 @@ export default class MultipleChoiceQuestionWidget extends React.Component{
 
     }
 
+    handleOnCancelSelected=()=>{
+
+        const examId =  this.props.navigation.getParam("examId", -10000);
+
+        Alert.alert(
+            'Confirm Exit',
+            'Exit to Exam Questions List without saving changes?',
+            [
+                {text: 'Cancel'
+                    , style: 'cancel'},
+                {text: 'OK',
+                    onPress:() => this.props.navigation.navigate('ExamQuestionsList',
+                        {
+                            examId : examId
+                        })}
+            ],
+            { cancelable: false }
+        )
+
+    }
     render(){
 
 

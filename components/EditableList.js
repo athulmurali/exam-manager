@@ -51,6 +51,10 @@ export default class EditableList extends React.Component{
                     onPress={()=>{this.handleOnPress(index)}}
                     checked={this.props.correctOptionIndex === index}
                     onLongPress ={()=>this.handleLongPress(index)}
+                    containerStyle={
+                        this.props.correctOptionIndex === index &&
+
+                        {backgroundColor: '#1188ff'}}
 
 
 

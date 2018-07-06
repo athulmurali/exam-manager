@@ -6,7 +6,7 @@ export default class EssayTextInput extends Component {
         super(props);
         this.handleChangeText = this.handleChangeText.bind(this)
         this.state = {
-            text: this.props.text || 'Please type here',
+            text: this.props.text,
         };
     }
 
@@ -25,7 +25,8 @@ export default class EssayTextInput extends Component {
                 <TextInput
                     multiline = {true}
                     onChangeText= {this.handleChangeText}
-                    value={this.props.text|| this.state.text}
+                    value={this.props.text}
+                    placeholder = {"Please type your exciting life story  here"}
                 />
 
         );

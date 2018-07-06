@@ -80,7 +80,9 @@ export default  class AddQuestionWidget extends  React.Component{
         this.setState(
             {
                 redirectToComponent : selectedValue,
-                examId : this.props.navigation.examId
+                examId : this.props.navigation.examId,
+
+
             },
         )
     }

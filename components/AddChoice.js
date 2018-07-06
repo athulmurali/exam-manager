@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         margin:0,
         backgroundColor: "transparent"
 
+
     },
     input: {
         flex: 1,
@@ -72,8 +73,21 @@ export default class AddChoice extends React.Component{
                     name: 'add',
                     size: 15,
                     color: 'white'
+
                 }}
                 title='AddNewChoice'
+
+                buttonStyle={{
+                    backgroundColor: "grey",
+                    width: 300,
+                    height: 45,
+                    borderColor: "black",
+                    borderWidth: 0.3,
+                    borderRadius: 10,
+                    alignItems:"center"
+                }}
+
+
                 onPress={this.handleOnPressAdd}
             />}
 

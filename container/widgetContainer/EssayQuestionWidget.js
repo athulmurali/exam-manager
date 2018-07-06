@@ -18,9 +18,6 @@ class  EssayQuestionWidget extends React.Component{
 
         super(props)
 
-            console.log("EssayQuestion : nav props");
-            console.warn("In essay screen , exam ID "+ this.props.navigation.getParam("examId",-1000000 ))
-
 
             this.state={
             editMode :  true,
@@ -37,26 +34,61 @@ class  EssayQuestionWidget extends React.Component{
 
     handleQuestionHeaderChange=(data)=>{
         console.log("Question :   onChangeQuestionText "  );
+        const newQuestionData =  {...this.state.question,...data}
+
+        console.log("Question data after header change : ")
         this.setState({
-            question : data
+            question : newQuestionData
         },()=>console.log(this.state))
 
 
     }
+
 
     handleOnUpdateSelected=()=>{
         const questionId = this.props.navigation.getParam("questionId",  -1000);
         const examId =  this.props.navigation.getParam("examId", -10000);
 
 
-        if(  questionId > -1 )
+        const question = this.state.question
+
+
+
+        if(!!question["id"])
+        {
             console.log("Essay question : exists")
+            console.log(question)
+
+
+            questionService.deleteQuestion(question.id).
+            then(res=>{
+                console.log("question deleted by ID : " + question.id)
+
+
+                delete question.id
+                questionService.createEssayExamQuestion(examId,question).then(res=>{
+                    console.log("question created! ")
+                    this.setState(
+                        {
+                            question: res
+                        }
+                    )
+                    Alert.alert(" Updated question! ")
+                    this.props.navigation
+                        .navigate('ExamQuestionsList',{
+                            examId : examId
+                        })
+                })
+            })
+
+
+        }
 
         else
         {
 
             questionService.createEssayExamQuestion
-            (examId,  this.state.question)
+            (examId,  question)
                 .then(res=>{
                 console.log("Saved essay question successfully")
                     console.log(res);
@@ -102,6 +134,16 @@ class  EssayQuestionWidget extends React.Component{
             editMode : editMode
         })
     }
+
+    componentDidMount(){
+
+        const selectedQuestion = this.props.navigation.getParam("question", false);
+        if (selectedQuestion)
+        {
+            this.setState({question : {...selectedQuestion} })
+        }
+        console.log("Essay question : mounted")
+    }
     render(){
         const questionText = "Longest paragraph in the world is not really easy to type. " +
             "That's why I keep the descriptions short"
@@ -132,7 +174,7 @@ class  EssayQuestionWidget extends React.Component{
 
             <AnswerContainer style={{padding :20}}>
                 <EssayTextInput
-                onChangeText={()=>console.log("hiiiii")} />
+                onChangeText={()=>console.log("Sorry boss !Not storing student answer")} />
             </AnswerContainer>
 
 

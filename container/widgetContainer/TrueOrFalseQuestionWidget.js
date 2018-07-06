@@ -44,9 +44,21 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
 
     componentDidMount(){
         console.log("QuestionTrueFalseWidget : Mounted");
+
+        const selectedQuestion = this.props.navigation.getParam("question", false);
+        if (selectedQuestion)
+        {
+            this.setState({question : {...selectedQuestion} })
+        }
     }
     componentWillUnmount(){
         console.log("QuestionTrueFalseWidget : Unmounted");
+
+        const selectedQuestion = this.props.navigation.getParam("question", false);
+        if (selectedQuestion)
+        {
+            this.setState({question : {...selectedQuestion} })
+        }
     }
 
     handleToggleEditMode=(editMode)=>{
@@ -73,11 +85,38 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
 
 
 
+        const question = this.state.question
 
-        console.log("On uodate select.....")
+        if(!!question["id"])
+        {
+            console.log("Essay question : exists")
+            console.log(question)
 
-        if(  questionId > -1 )
-            console.log("TrueFALse  question : exists")
+
+            questionService.deleteQuestion(question.id).
+            then(res=>{
+                console.log("question deleted by ID : " + question.id)
+
+
+                delete question.id
+                questionService.createTrueOrFalseExamQuestion(examId,question).then(res=>{
+                    console.log("question created! ")
+                    this.setState(
+                        {
+                            question: res
+                        }
+                    )
+                    Alert.alert(" Updated question! ")
+                    this.props.navigation
+                        .navigate('ExamQuestionsList',{
+                            examId : examId
+                        })
+                })
+            })
+
+
+        }
+
 
         else
         {
@@ -109,7 +148,7 @@ export default class TrueOrFalseQuestionWidget extends React.Component{
         const questionIndex = 1
         const questionPoints = 100
 
-        console.log("QuestionTrueFalseContainer : rendered")
+        console.log("QuestionTrueFalseWidget : rendered")
 
         return <ScrollView style ={{padding : 11}}>
 

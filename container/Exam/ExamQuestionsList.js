@@ -55,23 +55,47 @@ export default class ExamQuestionsList extends React.Component{
         title : "Exam Questions List"
     }
 
-    redirectByType=(type)=>{
+    redirectByType=(type,question)=>{
+
+
+
+        console.warn("selected question:")
+        console.warn(question)
         switch (type){
 
 
             case "BLANKS":
-                this.props.navigation.navigate(FILL)
+                this.props.navigation.navigate(FILL,{
+                    question : question,
+                    examId : this.state.examId
+
+                })
                 break;
             case "ESSAY":
-                this.props.navigation.navigate(ESSAY)
+                this.props.navigation.navigate(ESSAY,{
+                    question : question,
+                    examId : this.state.examId
+
+
+                })
                 break;
 
             case "MCQ":
-                this.props.navigation.navigate(MCQ)
+                this.props.navigation.navigate(MCQ,{
+                    question : question,
+                    examId : this.state.examId
+
+
+                })
                 break;
 
             case "TF":
-                this.props.navigation.navigate(TF)
+                this.props.navigation.navigate(TF,{
+                    question : question,
+                    examId : this.state.examId
+
+
+                })
                 break;
 
             default:
@@ -84,20 +108,31 @@ export default class ExamQuestionsList extends React.Component{
 
     componentDidMount(){
         console.log("Exam Questions List : Mounted ");
+        console.warn("Printing exam Questions list nav params")
+        console.warn(this.props.navigation.state.params )
         this.fetchAllQuestionsByExamId();
     }
 
+
+    componentWillReceiveProps(newProps){
+        console.warn("***********************")
+        console.log("new props")
+        console.log(newProps)
+        this.fetchAllQuestionsByExamId()
+    }
     constructor(props)
     {
         super(props)
 
-        console.warn("Printing exam Questions list nav params")
-        console.warn(this.props.navigation.state.params )
+
 
         this.state={
             questionsList : [],
             examId : this.props.navigation.getParam("examId",-1)
         }
+
+        this.fetchAllQuestionsByExamId()
+
     }
 
 
@@ -118,7 +153,7 @@ export default class ExamQuestionsList extends React.Component{
 
         this.props.navigation.navigate("AddQuestionWidget",
             {
-            examId :this.state.examId
+                examId :this.state.examId,
              })
     }
 
@@ -146,7 +181,7 @@ export default class ExamQuestionsList extends React.Component{
     handlePress=(question,id)=>{
         console.log("Exam Questions List Press....")
 
-        this.redirectByType(question.type)
+        this.redirectByType(question.type, question)
 
         // this.props.navigation.navigate("AddQuestionWidget")
     }

@@ -7,11 +7,6 @@ export default  class  BlanksQuestionContainer extends React.Component{
     constructor(props)
     {
         super(props)
-        this.state ={
-            editMode  : true,
-            newText   : this.props.blanksQuestionText
-
-        }
 
         this.handleOnChangeText = this.handleOnChangeText.bind(this)
 
@@ -22,18 +17,8 @@ export default  class  BlanksQuestionContainer extends React.Component{
     handleOnChangeText(text){
         console.log("BlanksQuestionContainer : handleOnChangeText")
         console.log("BlanksQuestionContainer : text new : " + text )
-        this.setNewText(text)
         this.props.onChangeTextWithBrackets(text)
     }
-
-    setNewText(newText){
-        this.setState((state)=>({
-            newText : newText
-        }))
-
-
-    }
-
 
     render(){
 
@@ -43,11 +28,10 @@ export default  class  BlanksQuestionContainer extends React.Component{
         return  <View  style={{padding: 15}}>
 
             {!!this.props.editMode &&
-                <BlanksQuestionEditor text={this.state.newText} onChangeText={this.handleOnChangeText}/> }
+                <BlanksQuestionEditor text={this.props.blanksQuestionText} onChangeText={this.handleOnChangeText}/> }
 
 
-                <BlanksWithTextBoxView blanksQuestionText={this.state.newText} />
-
+                <BlanksWithTextBoxView blanksQuestionText={this.props.blanksQuestionText} />
 
         </View>
 

@@ -21,6 +21,9 @@ class QuestionList extends Component {
       .then(response => (response.json()))
       .then(questions => this.setState({questions}))
   }
+
+
+
   render() {
     return(
       <View style={{padding: 15}}>

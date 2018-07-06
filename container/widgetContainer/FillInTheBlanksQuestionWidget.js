@@ -24,9 +24,9 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
         super(props)
 
 
-        console.log("FillInTheBlanksWidget : nav props");
-        console.warn("In FillInTheBlanksWidget screen , " +
-            "exam ID "+ this.props.navigation.getParam("examId",-1000000 ))
+
+        console.warn("Fill in the blanks question nav params")
+        console.warn(this.props.navigation.state.params)
 
 
 
@@ -47,6 +47,12 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
 
     componentDidMount(){
         console.log("FillInTheBlanksQuestionWidget : Mounted");
+
+        const selectedQuestion = this.props.navigation.getParam("question", false);
+        if (selectedQuestion)
+        {
+            this.setState({question : {...selectedQuestion} })
+        }
     }
     componentWillUnmount(){
         console.log("FillInTheBlanksQuestionWidget : Unmounted");
@@ -71,9 +77,37 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
         const examId =  this.props.navigation.getParam("examId", -10000);
 
         console.log("On uodate select.....")
+        const question = this.state.question
 
-        if(  questionId > -1 )
-            console.log("Essay question : exists")
+        if(!!question["id"])
+        {
+            console.log(" question : exists")
+            console.log(question)
+
+
+            questionService.deleteQuestion(question.id).
+            then(res=>{
+                console.log("question deleted by ID : " + question.id)
+
+
+                delete question.id
+                questionService.createFillInTheBlanksExamQuestion(examId,question).then(res=>{
+                    console.log("question created! ")
+                    this.setState(
+                        {
+                            question: res
+                        }
+                    )
+                    Alert.alert(" Updated question! ")
+                    this.props.navigation
+                        .navigate('ExamQuestionsList',{
+                            examId : examId
+                        })
+                })
+            })
+
+
+        }
 
         else
         {
@@ -176,7 +210,7 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
 
 
                 <BlanksQuestionContainer
-                    blanksQuestionText={"Test input for blanks"}
+                    blanksQuestionText={this.state.question.textWithBrackets}
                     editMode = {!!this.state.editMode}
                     onChangeText={this.handleChangeBlanksText}
                     onChangeTextWithBrackets = {this.handleOnChangeTextWithBrackets}
