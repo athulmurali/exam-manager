@@ -30,7 +30,6 @@ export default  class Assignment extends Component {
                 description : "",
                 points : "",
                 title : "",
-                id : -1
             }
         }
 
@@ -93,7 +92,6 @@ export default  class Assignment extends Component {
 
         const assignment = this.state.assignment
         const assignmentServiceObj =AssignmentService.instance;
-        assignmentServiceObj.createAssignment(281,assignment)
 
 
         const topicId       = this.props.navigation.getParam("topicId", -1);
@@ -126,14 +124,20 @@ export default  class Assignment extends Component {
             console.log("Creating new assignment ")
 
             assignmentServiceObj.createAssignment(this.state.topicId, assignment).then((res)=>{
-                console.log(res)
+
+
+                    this.setState({
+                        assignment : res
+                    },()=>{
+                        this.exitToPreviousScreen()
+
+                    })
 
             })
 
 
         }
 
-        this.exitToPreviousScreen()
 
 
     }
