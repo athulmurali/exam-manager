@@ -58,11 +58,12 @@ export default  class AddExamWidget extends  React.Component{
 
             console.log("Creating new exam ")
             examServiceObj.createExam(this.state.topicId, exam).then(res=>{
-                console.log(res)
+
+                        this.exitToPreviousScreen();
+
             })
         }
 
-        this.exitToPreviousScreen();
 
     }
 
