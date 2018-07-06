@@ -61,8 +61,8 @@ const homeworkOptions =[
         console.log("QuestionTypePicker :rendered:");
         return(
 
-            <View style ={this.props.style}>
-                <Text h3  > Homework  Type ?</Text>
+            <View style ={{alignContent: "center"}}>
+                <Text h3  style={{alignSelf : "center"}}> Homework  Type ?</Text>
 
                 <Picker
                     onValueChange={
@@ -78,6 +78,8 @@ const homeworkOptions =[
 
                 </Picker>
                 {/*<Text>{this.state.questionType}</Text>*/}
+
+                <View style ={{alignItems: "center"}}>
 
                 <Button
                     title="Ok"
@@ -103,6 +105,7 @@ const homeworkOptions =[
                         this.handlePressOk()
                     }}
                 />
+            </View>
             </View>
         )
     }

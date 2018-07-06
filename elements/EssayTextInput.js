@@ -27,6 +27,12 @@ export default class EssayTextInput extends Component {
                     onChangeText= {this.handleChangeText}
                     value={this.props.text}
                     placeholder = {"Please type your exciting life story  here"}
+                    style={{
+                        minHeight : 100,
+                        borderWidth: 1,
+                        maxWidth :300,
+                        minWidth:300
+                    }}
                 />
 
         );

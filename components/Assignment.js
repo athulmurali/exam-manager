@@ -6,7 +6,6 @@ import EditModeToggleNavBar from "../container/EditModeToggleNavBar";
 import EditableQuestionContainer from "../container/EditableQuestionContainer";
 import AssignmentService from "../services/AssignmentService";
 import EditableContainerUpdateNavBar from "../container/EditableContainerUpdateNavBar";
-import EssayTextInput from "../elements/EssayTextInput";
 
 const assignmentService = AssignmentService.instance
 export default  class Assignment extends Component {
@@ -111,7 +110,7 @@ export default  class Assignment extends Component {
 
             console.log("Deleting and creating ")
             assignmentServiceObj.deleteAssign(assignmentId).then((res)=>{
-                console.log("hi")
+                console.log(res)
             });
             console.log("Assignment deleted ")
             assignmentServiceObj.createAssignment(this.state.topicId, assignment).then(res=>{
@@ -257,7 +256,7 @@ export default  class Assignment extends Component {
                         color='#517fa4'
                     />
 
-                    <EssayTextInput
+                    <TextInput
 
                         text={this.state.linkText}
                         onChangeText={(text) => this.setState({linkText: text})}
