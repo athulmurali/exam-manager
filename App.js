@@ -7,7 +7,7 @@ import QuestionTypeButtonGroupChooser from './elements/QuestionTypeButtonGroupCh
 import TrueFalseQuestionEditor from './elements/TrueFalseQuestionEditor'
 import MultipleChoiceQuestionEditor from './elements/MultipleChoiceQuestionEditor'
 import {createStackNavigator} from 'react-navigation'
-import {Button} from 'react-native-elements'
+import {Button, Text} from 'react-native-elements'
 import CourseList from './components/CourseList'
 import ModuleList from './components/ModuleList'
 import LessonList from './components/LessonList'
@@ -46,6 +46,9 @@ class Home extends React.Component{
         <FixedHeader/>
 
 
+          <Text>Note : Click on courses for the full workflow. Others are just shortcuts!</Text>
+
+
 
           <Button title="Courses"
                 onPress={() => this.props.navigation
@@ -71,9 +74,6 @@ class Home extends React.Component{
           <Button title="MultipleChoiceQuestionWidget"
                   onPress={() => this.props.navigation
                       .navigate('MultipleChoiceQuestionWidget') } />
-
-
-
 
 
 
@@ -107,16 +107,7 @@ class Home extends React.Component{
 
 
 
-          {/*<TrueFalseQuestionEditor/>*/}
 
-        {/*<QuestionTypeButtonGroupChooser/>*/}
-
-        {/*/!*<Exam/>*!/*/}
-
-        {/*<Icons/>*/}
-        {/*<View style={{padding: 20}}>*/}
-          {/*<TextHeadings/>*/}
-        {/*</View>*/}
       </ScrollView>
     )
   }
