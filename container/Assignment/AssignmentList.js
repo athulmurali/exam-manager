@@ -40,7 +40,7 @@ export default class AssignmentList extends React.Component{
         },this.fetchAllAssignments);
     }
 
-    componentWillUnmount(){
+    componentWillReceiveProps(newProps){
         this.fetchAllAssignments()
     }
     deleteById=(id)=>{

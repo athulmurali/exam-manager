@@ -55,6 +55,7 @@ const homeworkOptions =[
         })
 
      }
+
     render() {
 
         console.log("QuestionTypePicker :rendered:");
