@@ -43,10 +43,7 @@ export default class Exam extends Component {
   render() {
     return(
       <View style={{padding: 15}}>
-          {
-            console.log(this.props.examsList)
-          }
-        <Text h2>Lists</Text>
+
         {this.props.examsList.map( (exam, index) => (
           <ListItem
             key={index}

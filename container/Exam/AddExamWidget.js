@@ -73,6 +73,11 @@ export default  class AddExamWidget extends  React.Component{
 
     }
 
+    handleToggleEditMode=(editMode)=>{
+        this.setState({
+            editMode : editMode
+        })
+    }
 
     handleOnUpdateSelected =()=>{
         console.log("Exam : Update selected")

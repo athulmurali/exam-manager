@@ -125,8 +125,9 @@ export default  class Assignment extends Component {
 
             console.log("Creating new assignment ")
 
-            assignmentServiceObj.createAssignment(this.state.topicId, assignment).then(res=>{
+            assignmentServiceObj.createAssignment(this.state.topicId, assignment).then((res)=>{
                 console.log(res)
+
             })
 
 

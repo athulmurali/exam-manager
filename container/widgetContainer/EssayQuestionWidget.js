@@ -31,6 +31,11 @@ class  EssayQuestionWidget extends React.Component{
     }
 
 
+    handleToggleEditMode=(editMode)=>{
+        this.setState({
+            editMode : editMode
+        })
+    }
 
     handleQuestionHeaderChange=(data)=>{
         console.log("Question :   onChangeQuestionText "  );

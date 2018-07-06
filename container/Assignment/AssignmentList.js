@@ -1,7 +1,7 @@
 import Exam from "../../elements/Exam";
 import React from "react";
 import {Alert, Button, View} from "react-native";
-import { Text} from "react-native-elements";
+import {Icon, Text} from "react-native-elements";
 import EssayQuestionWidget from "../widgetContainer/EssayQuestionWidget";
 import AssignmentService from "../../services/AssignmentService";
 
@@ -12,37 +12,6 @@ const TF=  "QuestionTrueFalseContainer"
 
 
 const assignmentServiceObj =AssignmentService.instance;
-const questions = [
-    {
-        title: 'Question 1',
-        subtitle: 'Assignment 1',
-        icon: 'list',
-        type :"MCQ",
-
-        id : 1
-
-    },
-    {	title: 'Question 2',
-        subtitle: 'Fill-in the blanks',
-        icon: 'code',
-        type :"FILL",
-        id: 2
-
-    },
-    {	title: 'Question 3', subtitle: 'True or false',
-        icon: 'check',
-        type :"TF",
-
-        id :3},
-    {	title: 'Question 4', subtitle: 'Essay',
-        icon: 'subject',
-        type :"ESSAY",
-
-        id :4
-
-    }
-
-]
 
 
 export default class AssignmentList extends React.Component{
@@ -53,10 +22,11 @@ export default class AssignmentList extends React.Component{
     {
         super(props)
         this.state={
-            questionsList : questions,
             assignmentList : [],
-            topicId : 281
+            topicId : this.props.navigation.getParam("topicId",-1)
         }
+
+        this.fetchAllAssignments()
     }
 
 
@@ -70,6 +40,9 @@ export default class AssignmentList extends React.Component{
         },this.fetchAllAssignments);
     }
 
+    componentWillUnmount(){
+        this.fetchAllAssignments()
+    }
     deleteById=(id)=>{
         console.log("AssignmentList : deleteById " )
 
@@ -131,10 +104,18 @@ export default class AssignmentList extends React.Component{
 
     render(){
         return<View>
-            <Text h4>Help</Text>
+            <Icon
+                raised
 
-            <Text >Long Press to Delete</Text>
-            <Text >Press to navigate to that question</Text>
+                color='#f50'
+                name='help'
+                type='font-awesome'
+                onPress={() =>
+                    Alert.alert('Long Press to Delete \n' +
+                        'Press to navigate to that question')}
+            />
+
+
 
             <Exam onPress={this.handlePress} onLongPress={this.handleLongPress}
                   examsList ={this.state.assignmentList} />

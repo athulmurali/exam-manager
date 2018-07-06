@@ -89,7 +89,7 @@ export default  class AddQuestionWidget extends  React.Component{
 
     handlePressOk(){
         console.log("AddQuestionWidget : handlePressOk")
-        console.warn("sending to next from addQe" + this.props.navigation.getParam("examId", -10000))
+        // console.warn("sending to next from addQe" + this.props.navigation.getParam("examId", -10000))
 
         this.props.navigation
             .navigate(this.state.redirectToComponent,{

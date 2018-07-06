@@ -25,8 +25,8 @@ export default class FillInTheBlanksQuestionWidget extends React.Component{
 
 
 
-        console.warn("Fill in the blanks question nav params")
-        console.warn(this.props.navigation.state.params)
+        // console.warn("Fill in the blanks question nav params")
+        // console.warn(this.props.navigation.state.params)
 
 
 

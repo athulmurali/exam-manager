@@ -2,9 +2,10 @@ import Exam from "../../elements/Exam";
 import React from "react";
 import {Alert, ScrollView, View} from "react-native";
 import {Button} from "react-native";
-import {Text} from "react-native-elements";
+import {Icon, Text} from "react-native-elements";
 import EssayQuestionWidget from "../widgetContainer/EssayQuestionWidget";
 import QuestionService from "../../services/QuestionService";
+import Divider from "react-native-elements/src/divider/Divider";
 
 const FILL = "FillInTheBlanksQuestionWidget"
 const ESSAY= "EssayQuestionWidget"
@@ -59,8 +60,8 @@ export default class ExamQuestionsList extends React.Component{
 
 
 
-        console.warn("selected question:")
-        console.warn(question)
+        // console.warn("selected question:")
+        // console.warn(question)
         switch (type){
 
 
@@ -108,14 +109,14 @@ export default class ExamQuestionsList extends React.Component{
 
     componentDidMount(){
         console.log("Exam Questions List : Mounted ");
-        console.warn("Printing exam Questions list nav params")
-        console.warn(this.props.navigation.state.params )
+        // console.warn("Printing exam Questions list nav params")
+        // console.warn(this.props.navigation.state.params )
         this.fetchAllQuestionsByExamId();
     }
 
 
     componentWillReceiveProps(newProps){
-        console.warn("***********************")
+        // console.warn("***********************")
         console.log("new props")
         console.log(newProps)
         this.fetchAllQuestionsByExamId()
@@ -204,11 +205,23 @@ export default class ExamQuestionsList extends React.Component{
         console.log(this.props.navigation.getParam("examId"), -1)
 
         return<ScrollView>
-            <Text h4>Help</Text>
 
-            <Text >Long Press to Delete</Text>
-            <Text >Press to navigate to that question</Text>
+            <Icon
+                raised
 
+                color='#f50'
+                name='help'
+                type='font-awesome'
+                onPress={() =>
+                    Alert.alert('Long Press to Delete \n' +
+                        'Press to navigate to that question')}
+            />
+
+
+
+            <Divider style={{
+                backgroundColor:
+                    'blue' }}/>
             <Exam onPress={this.handlePress} onLongPress={this.handleLongPress}
             examsList ={this.state.questionsList} />
 

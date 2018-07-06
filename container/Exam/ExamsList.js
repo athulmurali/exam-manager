@@ -2,7 +2,7 @@ import Exam from "../../elements/Exam";
 import React from "react";
 import {Alert, View} from "react-native";
 import {Button} from "react-native";
-import {Text} from "react-native-elements";
+import {Icon, Text} from "react-native-elements";
 import ExamService from "../../services/ExamService";
 
 
@@ -117,11 +117,17 @@ export default class ExamsList extends React.Component{
                 }
 
         return<View>
-            <Text h4>Help</Text>
-            {console.log("Topic id in exams list : " + this.props.navigation.getParam("topicId",-100))}
+            <Icon
+                raised
 
-            <Text >Long Press to Delete</Text>
-            <Text >Press to navigate to that question</Text>
+                color='#f50'
+                name='help'
+                type='font-awesome'
+                onPress={() =>
+                    Alert.alert('Long Press to Delete \n' +
+                        'Press to navigate to that question')}
+            />
+
 
             <Exam onPress={this.handlePress}
                   onLongPress={this.handleLongPress}
